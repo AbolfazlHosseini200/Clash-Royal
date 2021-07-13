@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,9 +24,8 @@ import java.util.ResourceBundle;
 
 public class Controller{
     private String password,username;
-    private Socket socket=new Socket("localhost",8585);
-    private DataOutputStream dataOutputStream=new DataOutputStream(socket.getOutputStream());
-    private DataInputStream dataInputStream=new DataInputStream(socket.getInputStream());
+    private DataOutputStream dataOutputStream=null;
+    private DataInputStream dataInputStream=null;
     @FXML
     private Button done;
     @FXML
@@ -35,7 +35,7 @@ public class Controller{
     @FXML
     private PasswordField pass;
     @FXML
-    private TextArea name;
+    private TextField name;
     @FXML
     private TextArea nameText;
     @FXML
@@ -44,10 +44,6 @@ public class Controller{
     private TextArea passwordSignUp;
     @FXML
     private TextArea email;
-
-    public Controller() throws IOException {
-    }
-
     @FXML
     public void check(ActionEvent event) throws IOException {
         if (pass.getText()!="" && name.getText()!="")
@@ -94,6 +90,7 @@ public class Controller{
             Scene scene=new Scene(layout);
             stage.setScene(scene);
             stage.showAndWait();
+        //Main.changeSceneToSignUp();
 
     }
     public static void userPassNotMatch()
@@ -125,7 +122,6 @@ public class Controller{
     {
         if(!passwordSignUp.getText().equals("") &&!passwordSignUp.getText().equals("")||!usernameSignUp.getText().equals("")||!email.getText().equals("")||!nameText.getText().equals(""))
         {
-            //send info to server
             Main.changeSceneToSignIn();
         }
         else
