@@ -64,7 +64,7 @@ public class Controller{
     @FXML
     private TextField email;
     @FXML
-    private static ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
+    private ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
     @FXML
     private ImageView addWizard,addValkyrie,addRage,addPeka,addGiant,addCanon,addArcher,addBarbarian,addFireBall,addBabyDragon,addArrow,addInferno;
     @FXML
