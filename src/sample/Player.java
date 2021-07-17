@@ -1,10 +1,12 @@
 package sample;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Player implements Serializable {
     private int gems,money;
     private String user,pass,name,email;
+    private ArrayList<String> deck=new ArrayList<String>();
 
     public String getUser() {
         return user;
@@ -21,6 +23,14 @@ public class Player implements Serializable {
         this.name=name;
         this.pass=pass;
         this.email=email;
+    }
+
+    public void setDeck(ArrayList<String> deck) {
+        this.deck = deck;
+    }
+
+    public ArrayList<String> getDeck() {
+        return deck;
     }
 }
 

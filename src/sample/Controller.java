@@ -24,19 +24,21 @@ public class Controller{
     private String password,username;
     private DataOutputStream dataOutputStream=null;
     private DataInputStream dataInputStream=null;
-    private final Image pekaImage=new Image("/mini%20pekka_00000.png");
-    private final Image babarImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\barbarian_00000.png");
-    private final Image wizardImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\wizard_00000.png");
-    private final Image infernoImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\inferno_00000.png");
-    private final Image giantImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\giant_00000.png");
-    private final Image arrowImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\arrows_00000.png");
-    private final Image archerImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\archer_00000.png");
-    private final Image valkyrieImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\valkyrie_00000.png");
-    private final Image rageImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\rage_00000.png");
-    private final Image canonImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\canon_00000.png");
-    private final Image fireBallImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\fireball_00000.png");
-    private final Image babyDragonImage=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\baby%20dragon_00000.png");
-    private final Image frame=new Image("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\frame.png");
+    private static ArrayList<String> legends=new ArrayList<String>();
+    private final Image babarImage=new Image("/barbarian_00000.png");
+    private final Image wizardImage=new Image("/wizard_00000.png");
+    private final Image pekaImage=new Image("/mini pekka_00000.png");
+        private final Image infernoImage=new Image("/inferno_00000.png");
+    private final Image giantImage=new Image("/giant_00000.png");
+    private final Image arrowImage=new Image("/arrows_00000.png");
+    private final Image archerImage=new Image("/archer_00000.png");
+    private final Image valkyrieImage=new Image("/valkyrie_00000.png");
+    private final Image rageImage=new Image("/rage_00000.png");
+    private final Image canonImage=new Image("/canon_00000.png");
+    private final Image fireBallImage=new Image("/fireball_00000.png");
+    private final Image babyDragonImage=new Image("/baby dragon_00000.png");
+    private final Image frame=new Image("/frame.png");
+    private static Player player;
     @FXML
     private Button done;
     @FXML
@@ -62,108 +64,1074 @@ public class Controller{
     @FXML
     private TextField email;
     @FXML
-    private ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
+    private static ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
     @FXML
     private ImageView addWizard,addValkyrie,addRage,addPeka,addGiant,addCanon,addArcher,addBarbarian,addFireBall,addBabyDragon,addArrow,addInferno;
     @FXML
-    private void remove1(MouseEvent mouseEvent)
-    {
-      deck1.setImage(null);
+    private void remove1(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+      if(!deck1.getImage().getUrl().equals(frame.getUrl()))
+          legends.remove(deck1.getImage().getUrl());
+      player.setDeck(legends);
+      deck1.setImage(frame);
     }
     @FXML
-    private void remove2(MouseEvent mouseEvent)
-    {
-     deck2.setImage(null);
+    private void remove2(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck2.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck2.getImage().getUrl());
+        player.setDeck(legends);
+        deck2.setImage(frame);
     }
     @FXML
-    private void remove3(MouseEvent mouseEvent)
-    {
-        deck3.setImage(null);
+    private void remove3(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck3.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck3.getImage().getUrl());
+        player.setDeck(legends);
+        deck3.setImage(frame);
     }
     @FXML
-    private void remove4(MouseEvent mouseEvent)
-    {
-      deck4.setImage(null);
+    private void remove4(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck4.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck4.getImage().getUrl());
+        player.setDeck(legends);
+        deck4.setImage(frame);
     }
     @FXML
-    private void remove5(MouseEvent mouseEvent)
-    {
-      deck5.setImage(null);
+    private void remove5(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck5.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck5.getImage().getUrl());
+        player.setDeck(legends);
+        deck5.setImage(frame);
     }
     @FXML
-    private void remove6(MouseEvent mouseEvent)
-    {
-     deck6.setImage(null);
+    private void remove6(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck6.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck6.getImage().getUrl());
+        player.setDeck(legends);
+        deck6.setImage(frame);
     }
     @FXML
-    private void remove7(MouseEvent mouseEvent)
-    {
-          deck7.setImage(null);
+    private void remove7(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck7.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck7.getImage().getUrl());
+        player.setDeck(legends);
+        deck7.setImage(frame);
     }
     @FXML
-    private void remove8(MouseEvent mouseEvent)
-    {
-       deck8.setImage(null);
+    private void remove8(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        if(!deck8.getImage().getUrl().equals(frame.getUrl()))
+            legends.remove(deck8.getImage().getUrl());
+        player.setDeck(legends);
+        deck8.setImage(frame);
     }
     @FXML
-    private void addArcher(MouseEvent mouseEvent)
-    {
+    private void addArcher(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(archerImage.getUrl()))
+                hasBeenChosen=true;
+            if(!hasBeenChosen) {
+                if(legends.size()<8)
+                {
+                    legends.add(archerImage.getUrl());
+                    player.setDeck(legends);
+                }
+                if (deck1.getImage().getUrl().equals(frame.getUrl())) {
+                    deck1.setImage(archerImage);
+                } else if (deck2.getImage().getUrl().equals(frame.getUrl())) {
+                    deck2.setImage(archerImage);
+                } else if (deck3.getImage().getUrl().equals(frame.getUrl())) {
+                    deck3.setImage(archerImage);
+                } else if (deck4.getImage().getUrl().equals(frame.getUrl())) {
+                    deck4.setImage(archerImage);
+                } else if (deck5.getImage().getUrl().equals(frame.getUrl())) {
+                    deck5.setImage(archerImage);
+                } else if (deck6.getImage().getUrl().equals(frame.getUrl())) {
+                    deck6.setImage(archerImage);
+                } else if (deck7.getImage().getUrl().equals(frame.getUrl())) {
+                    deck7.setImage(archerImage);
+                } else if (deck8.getImage().getUrl().equals(frame.getUrl())) {
+                    deck8.setImage(archerImage);
+                } else {
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setTitle("Warning");
+                    stage.setMinWidth(250);
+                    Label label = new Label();
+                    label.setText("Your Deck Is Full!!");
+                    Button button1 = new Button("Ok");
+                    button1.setOnAction(event1 -> {
+                        stage.close();
+                    });
+                    VBox layout = new VBox(10);
+                    layout.getChildren().addAll(label, button1);
+                    layout.setAlignment(Pos.CENTER);
+                    Scene scene = new Scene(layout);
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                }
+            }
+            else {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("You Have Chosen This Legend Before");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
 
     }
     @FXML
-    private void addWizard(MouseEvent mouseEvent)
-    {
+    private void addWizard(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(wizardImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+            {
+                legends.add(wizardImage.getUrl());
+                player.setDeck(legends);
+            }
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(wizardImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(wizardImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(wizardImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(wizardImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(wizardImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(wizardImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(wizardImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(wizardImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addRage(MouseEvent mouseEvent)
-    {
+    private void addRage(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(rageImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+            {
+                legends.add(rageImage.getUrl());
+            }
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(rageImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(rageImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(rageImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(rageImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(rageImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(rageImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(rageImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(rageImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addPeka(MouseEvent mouseEvent)
-    {
+    private void addPeka(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(pekaImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+            {
+                legends.add(pekaImage.getUrl());
+            }
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(pekaImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(pekaImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(pekaImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(pekaImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(pekaImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(pekaImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(pekaImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(pekaImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addFireBall(MouseEvent mouseEvent)
-    {
+    private void addFireBall(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(fireBallImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(fireBallImage.getUrl()) ;
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(fireBallImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(fireBallImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(fireBallImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(fireBallImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(fireBallImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(fireBallImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(fireBallImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(fireBallImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addGiant(MouseEvent mouseEvent)
-    {
+    private void addGiant(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(giantImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(giantImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(giantImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(giantImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(giantImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(giantImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(giantImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(giantImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(giantImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(giantImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addArrow(MouseEvent mouseEvent)
-    {
+    private void addArrow(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(arrowImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(arrowImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(arrowImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(arrowImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(arrowImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(arrowImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(arrowImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(arrowImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(arrowImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(arrowImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addInferno(MouseEvent mouseEvent)
-    {
+    private void addInferno(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(infernoImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(infernoImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(infernoImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(infernoImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(infernoImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(infernoImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(infernoImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(infernoImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(infernoImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(infernoImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addBarbarian(MouseEvent mouseEvent)
-    {
+    private void addBarbarian(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(babarImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(babarImage.getUrl());
+            player.setDeck(legends);
+            ArrayList<Player> players = new ArrayList<Player>();
+            String filename = "C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\data.bin";
+            File file = new File(filename);
+            if (file.exists()) {
+                ObjectInputStream ois = null;
+                ois = new ObjectInputStream(new FileInputStream(file));
+                boolean cont = true;
+                players=(ArrayList<Player>)ois.readObject();
 
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getUser().equals(username))
+                        if (players.get(i).getPass().equals(password)) {
+                            players.get(i).setDeck(legends);
+                            return;
+                        }
+                }
+                FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream out =null;
+                out = new ObjectOutputStream (fos);
+                out.writeObject(players);
+                out.close();
+                ois.close();
+            }
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(babarImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+
+                deck2.setImage(babarImage);
+            }
+
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(babarImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(babarImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(babarImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(babarImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(babarImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(babarImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addBabyDragon(MouseEvent mouseEvent)
-    {
+    private void addBabyDragon(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(babyDragonImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(babyDragonImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(babyDragonImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(babyDragonImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(babyDragonImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(babyDragonImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(babyDragonImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(babyDragonImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(babyDragonImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(babyDragonImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addCanon(MouseEvent mouseEvent)
-    {
+    private void addCanon(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(canonImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(canonImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(canonImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(canonImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(canonImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(canonImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(canonImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(canonImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(canonImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(canonImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
-    private void addValkyrie(MouseEvent mouseEvent)
-    {
+    private void addValkyrie(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        boolean hasBeenChosen=false;
+        for (int i=0;i<legends.size();i++)
+            if(legends.get(i).equals(valkyrieImage.getUrl()))
+                hasBeenChosen=true;
+        if(!hasBeenChosen)
+        {
+            if(legends.size()<8)
+                legends.add(valkyrieImage.getUrl());
+            player.setDeck(legends);
+            if(deck1.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck1.setImage(valkyrieImage);
+            }
+            else if (deck2.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck2.setImage(valkyrieImage);
+            }
 
+            else if (deck3.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck3.setImage(valkyrieImage);
+            }
+            else if (deck4.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck4.setImage(valkyrieImage);
+            }
+            else if (deck5.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck5.setImage(valkyrieImage);
+            }
+            else if (deck6.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck6.setImage(valkyrieImage);
+            }
+            else if (deck7.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck7.setImage(valkyrieImage);
+            }
+            else if (deck8.getImage().getUrl().equals(frame.getUrl()))
+            {
+                deck8.setImage(valkyrieImage);
+            }
+            else
+            {
+                Stage stage=new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Warning");
+                stage.setMinWidth(250);
+                Label label=new Label();
+                label.setText("Your Deck Is Full!!");
+                Button button1=new Button("Ok");
+                button1.setOnAction(event1->{
+                    stage.close();
+                });
+                VBox layout=new VBox(10);
+                layout.getChildren().addAll(label,button1);
+                layout.setAlignment(Pos.CENTER);
+                Scene scene=new Scene(layout);
+                stage.setScene(scene);
+                stage.showAndWait();
+            }
+        }
+        else {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Warning");
+            stage.setMinWidth(250);
+            Label label=new Label();
+            label.setText("You Have Chosen This Legend Before");
+            Button button1=new Button("Ok");
+            button1.setOnAction(event1->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button1);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
     @FXML
     public void check(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -196,10 +1164,10 @@ public class Controller{
             ois = new ObjectInputStream(new FileInputStream(file));
             boolean cont = true;
             players=(ArrayList<Player>)ois.readObject();
-
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getUser().equals(username))
                         if (players.get(i).getPass().equals(password)) {
+                            player=players.get(i);
                             Controller.enterMainMenu();
                             return;
                         }
@@ -242,6 +1210,7 @@ public class Controller{
             Scene scene=new Scene(layout);
             stage.setScene(scene);
             stage.showAndWait();
+            ArrayList<String> deck=player.getDeck();
         Main.changeSceneToMainMenu();
 
     }
@@ -268,10 +1237,6 @@ public class Controller{
     private void signUp(ActionEvent event)
     {
         Main.changeSceneToSignUp();
-    }
-    private void ForgotPass(ActionEvent event)
-    {
-
     }
     @FXML
     private void backToSignIn(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -316,7 +1281,6 @@ public class Controller{
                 if(a)
                 for (int i=0;i<players.size();i++)
                 {
-                    System.out.println(players.get(i).getUser());
                     if(players.get(i).getUser().equals(usernameSignUp.getText()))
                     {
                         a=false;
@@ -341,7 +1305,8 @@ public class Controller{
                 }
                 if(a)
                 {
-                    players.add(new Player(usernameSignUp.getText(),nameText.getText(),passwordSignUp.getText(),email.getText()));
+                    Player p=new Player(usernameSignUp.getText(),nameText.getText(),passwordSignUp.getText(),email.getText());
+                    players.add(p);
                     out.writeObject(players);
                 }
 

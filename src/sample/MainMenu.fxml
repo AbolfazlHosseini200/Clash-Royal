@@ -24,7 +24,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
-            <Image url="@../menu%20back.jpg" />
+            <Image url="@../menu back.jpg" />
          </image>
       </ImageView>
       <TabPane blendMode="RED" layoutX="-1.0" layoutY="1.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -165,7 +165,7 @@
                               </ImageView>
                               <ImageView fx:id="babyDragon" fitHeight="136.0" fitWidth="105.0" onMouseClicked="#addBabyDragon" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../baby%20dragon_00000.png" />
+                                    <Image url="@../baby dragon_00000.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="barbarian" fitHeight="139.0" fitWidth="109.0" onMouseClicked="#addBarbarian" pickOnBounds="true">
@@ -194,7 +194,7 @@
                               </ImageView>
                               <ImageView fx:id="peka" fitHeight="139.0" fitWidth="101.0" onMouseClicked="#addPeka" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../mini%20pekka_00000.png" />
+                                    <Image url="@../mini pekka_00000.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="rage" fitHeight="139.0" fitWidth="100.0" onMouseClicked="#addRage" pickOnBounds="true">
@@ -572,7 +572,7 @@
                      <children>
                         <ImageView fitHeight="375.0" fitWidth="600.0" layoutX="1.0" layoutY="-2.0" opacity="0.73" pickOnBounds="true">
                            <image>
-                              <Image url="@../1v1%20back.jpg" />
+                              <Image url="@../1v1 back.jpg" />
                            </image>
                         </ImageView>
                         <Button blendMode="SOFT_LIGHT" layoutX="29.0" layoutY="12.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="115.0" text="Battle" textFill="#12514f">
@@ -616,7 +616,7 @@
                      <children>
                         <ImageView cache="true" fitHeight="374.0" fitWidth="606.0" layoutY="-2.0" opacity="0.73" pickOnBounds="true">
                            <image>
-                              <Image url="@../2v2%20back.jpg" />
+                              <Image url="@../2v2 back.jpg" />
                            </image>
                         </ImageView>
                         <Button blendMode="SOFT_LIGHT" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="110.0" text="Battle" textFill="#12514f">
