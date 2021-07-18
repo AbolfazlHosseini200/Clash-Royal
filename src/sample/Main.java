@@ -41,7 +41,6 @@ public class Main extends Application {
         FXMLLoader loaderMainMenu = new FXMLLoader(urlMainMenu);
         Parent rootMainMenu=loaderMainMenu.load();
         mainMenu=new Scene(rootMainMenu, 600, 400);
-
         URL urlGame = getClass().getResource("Game.fxml");
         FXMLLoader loaderGame = new FXMLLoader(urlGame);
         Parent rootGame=loaderGame.load();

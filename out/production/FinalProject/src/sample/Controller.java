@@ -1,6 +1,6 @@
 package sample;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,11 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.util.Duration;
 import java.io.*;
-import java.net.Socket;
 import java.net.URL;
-import java.sql.Time;
 import java.util.*;
 
 public class Controller implements Initializable{
@@ -25,7 +23,7 @@ public class Controller implements Initializable{
     private DataOutputStream dataOutputStream=null;
     private DataInputStream dataInputStream=null;
     private int m=3,s=0;
-    private static ArrayList<String> legends=new ArrayList<String>();
+    public static ArrayList<String> legends=new ArrayList<String>();
     private final Image babarImage=new Image("/barbarian_00000.png");
     private final Image wizardImage=new Image("/wizard_00000.png");
     private final Image pekaImage=new Image("/mini pekka_00000.png");
@@ -53,13 +51,7 @@ public class Controller implements Initializable{
     @FXML
     private Button trainingBattle;
     @FXML
-    private Button game;
-    @FXML
     private PasswordField pass;
-    @FXML
-    private ProgressBar elixirBar;
-    @FXML
-    private Label elixirLabel,timeLabel,crownLabel;
     @FXML
     private TextField name;
     @FXML
@@ -75,12 +67,9 @@ public class Controller implements Initializable{
     @FXML
     private ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
     @FXML
-    private ImageView gameDeck1,gameDeck2,gameDeck3,gameDeck4,gameDeck5;
-    @FXML
     private ImageView addWizard,addValkyrie,addRage,addPeka,addGiant,addCanon,addArcher,addBarbarian,addFireBall,addBabyDragon,addArrow,addInferno;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
     @FXML
     private void remove1(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
@@ -1355,54 +1344,34 @@ public class Controller implements Initializable{
         Main.changeSceneToSignIn();
     }
     @FXML
-    private void trainingBattle(ActionEvent event)
-    {
-        Main.changeSceneToGame();
-    }
-
-    @FXML
-    private void game(ActionEvent event) throws InterruptedException {
-        crownLabel.setText("0");
-        elixirLabel.setText("0");
-        timeLabel.setText("3:00");
-        while(true){
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    s--;
-                if(s<0)
-                {
-                    m--;
-                    s+=60;
-                }
-                if(s<10)
-                    timeLabel.setText(m+":0"+s);
-                else
-                    timeLabel.setText(m+":"+s);
-            }
-            });
-            Thread.sleep(1000);
+    private void trainingBattle(ActionEvent event) throws IOException {
+        if(legends.size()==8)
+        {
+            Main.changeSceneToGame();
         }
-//        TimerTask timerTask=new TimerTask() {
-//            @Override
-//            public void run() {
-//                s--;
-//                if(s<0)
-//                {
-//                    m--;
-//                    s+=60;
-//                }
-//                if(s<10)
-//                    timeLabel.setText(m+":0"+s);
-//                else
-//                    timeLabel.setText(m+":"+s);
-//                if(m==0 && s==0)
-//                    this.cancel();
-//            }
-//        };
-//        Timer t=new Timer();
-//        t.schedule(timerTask,1000,1000);
+        else
+        {
+            Stage stage=new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setMinWidth(250);
+            stage.setTitle("Congrats");
+            Label label=new Label();
+            label.setText("You Didn't Full Your Deck Yet");
+            Button button=new Button("Ok");
+            button.setOnAction(e->{
+                stage.close();
+            });
+            VBox layout=new VBox(10);
+            layout.getChildren().addAll(label,button);
+            layout.setAlignment(Pos.CENTER);
+            Scene scene=new Scene(layout);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+
     }
 
-
+    public static ArrayList<String> getLegends() {
+        return legends;
+    }
 }
