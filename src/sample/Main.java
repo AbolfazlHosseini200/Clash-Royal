@@ -21,6 +21,7 @@ public class Main extends Application {
     static Scene signUpScene;
     static Scene signInScene;
     static Scene mainMenu;
+    static Scene gameScene;
     static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -40,10 +41,13 @@ public class Main extends Application {
         FXMLLoader loaderMainMenu = new FXMLLoader(urlMainMenu);
         Parent rootMainMenu=loaderMainMenu.load();
         mainMenu=new Scene(rootMainMenu, 600, 400);
+
+        URL urlGame = getClass().getResource("Game.fxml");
+        FXMLLoader loaderGame = new FXMLLoader(urlGame);
+        Parent rootGame=loaderGame.load();
+        gameScene=new Scene(rootGame, 650, 458);
         primaryStage.show();
     }
-
-
     public static void changeSceneToSignUp()
     {
         stage.setScene(signUpScene);
@@ -55,6 +59,10 @@ public class Main extends Application {
     public static void changeSceneToMainMenu()
     {
         stage.setScene(mainMenu);
+    }
+    public static void changeSceneToGame()
+    {
+        stage.setScene(gameScene);
     }
     public static void main(String[] args) {
         launch(args);

@@ -1,4 +1,5 @@
 package sample;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,19 +17,19 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.sql.Time;
+import java.util.*;
 
-public class Controller{
+public class Controller implements Initializable{
     private String password,username;
     private DataOutputStream dataOutputStream=null;
     private DataInputStream dataInputStream=null;
+    private int m=3,s=0;
     private static ArrayList<String> legends=new ArrayList<String>();
     private final Image babarImage=new Image("/barbarian_00000.png");
     private final Image wizardImage=new Image("/wizard_00000.png");
     private final Image pekaImage=new Image("/mini pekka_00000.png");
-        private final Image infernoImage=new Image("/inferno_00000.png");
+    private final Image infernoImage=new Image("/inferno_00000.png");
     private final Image giantImage=new Image("/giant_00000.png");
     private final Image arrowImage=new Image("/arrows_00000.png");
     private final Image archerImage=new Image("/archer_00000.png");
@@ -50,7 +51,15 @@ public class Controller{
     @FXML
     private Button backToSignIn;
     @FXML
+    private Button trainingBattle;
+    @FXML
+    private Button game;
+    @FXML
     private PasswordField pass;
+    @FXML
+    private ProgressBar elixirBar;
+    @FXML
+    private Label elixirLabel,timeLabel,crownLabel;
     @FXML
     private TextField name;
     @FXML
@@ -66,7 +75,13 @@ public class Controller{
     @FXML
     private ImageView deck1,deck2,deck3,deck4,deck5,deck6,deck7,deck8;
     @FXML
+    private ImageView gameDeck1,gameDeck2,gameDeck3,gameDeck4,gameDeck5;
+    @FXML
     private ImageView addWizard,addValkyrie,addRage,addPeka,addGiant,addCanon,addArcher,addBarbarian,addFireBall,addBabyDragon,addArrow,addInferno;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
     @FXML
     private void remove1(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
       if(!deck1.getImage().getUrl().equals(frame.getUrl()))
@@ -1339,4 +1354,55 @@ public class Controller{
     {
         Main.changeSceneToSignIn();
     }
+    @FXML
+    private void trainingBattle(ActionEvent event)
+    {
+        Main.changeSceneToGame();
+    }
+
+    @FXML
+    private void game(ActionEvent event) throws InterruptedException {
+        crownLabel.setText("0");
+        elixirLabel.setText("0");
+        timeLabel.setText("3:00");
+        while(true){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    s--;
+                if(s<0)
+                {
+                    m--;
+                    s+=60;
+                }
+                if(s<10)
+                    timeLabel.setText(m+":0"+s);
+                else
+                    timeLabel.setText(m+":"+s);
+            }
+            });
+            Thread.sleep(1000);
+        }
+//        TimerTask timerTask=new TimerTask() {
+//            @Override
+//            public void run() {
+//                s--;
+//                if(s<0)
+//                {
+//                    m--;
+//                    s+=60;
+//                }
+//                if(s<10)
+//                    timeLabel.setText(m+":0"+s);
+//                else
+//                    timeLabel.setText(m+":"+s);
+//                if(m==0 && s==0)
+//                    this.cancel();
+//            }
+//        };
+//        Timer t=new Timer();
+//        t.schedule(timerTask,1000,1000);
+    }
+
+
 }

@@ -489,7 +489,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="trainingBattle" blendMode="HARD_LIGHT" layoutX="66.0" layoutY="251.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="133.0" text="Battle" textFill="#12514f">
+                        <Button fx:id="trainingBattle" blendMode="HARD_LIGHT" layoutX="66.0" layoutY="251.0" mnemonicParsing="false" onAction="#trainingBattle" prefHeight="95.0" prefWidth="133.0" text="Battle" textFill="#12514f">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="24.0" />
                            </font>
