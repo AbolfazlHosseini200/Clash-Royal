@@ -117,8 +117,16 @@ public class GameController implements Initializable {
                 gc.drawImage(new Image("/ground.png",653,400,false,false),0,0);
                 for(int o=0;o<cardsInGame.size();o++)
                 {
-
+                    if(cardsInGame.get(o).x<280||cardsInGame.get(o).x>310 &&(cardsInGame.get(o).y<260&&cardsInGame.get(o).y>250))
                     cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    else {
+                        if(cardsInGame.get(o).y>200 && cardsInGame.get(o).y<280)
+                            cardsInGame.get(o).y=cardsInGame.get(o).y+t/5;
+                        else if(cardsInGame.get(o).y<200 && cardsInGame.get(o).y>50)
+                            cardsInGame.get(o).y=cardsInGame.get(o).y-t/5;
+                        else
+                            cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    }
                     gc.drawImage(new Image(cardsInGame.get(o).card,50,50,false,false),cardsInGame.get(o).x,cardsInGame.get(o).y);
                 }
 
@@ -729,67 +737,54 @@ public class GameController implements Initializable {
     public void dropCard(MouseEvent mouseEvent) {
         double x = mouseEvent.getX();
         double y = mouseEvent.getY();
-        cardsInGame.add(new CardXY(chosenCard,x,y));
         if (chosenCard.equals(rageImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(rageImage.getUrl(),x,y));
-                gc.drawImage(rageImage, x, y);
             }
         } else if (chosenCard.equals(babarImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(babarImageBattle.getUrl(),x,y));
-                gc.drawImage(babarImageBattle, x, y);
             }
         } else if (chosenCard.equals(wizardImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(wizardImageBattle.getUrl(),x,y));
-                gc.drawImage(wizardImageBattle, x, y);
             }
         } else if (chosenCard.equals(infernoImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(infernoImageBattle.getUrl(),x,y));
-                gc.drawImage(infernoImageBattle, x, y);
             }
         } else if (chosenCard.equals(babyDragonImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(babyDragonImageBattle.getUrl(),x,y));
-                gc.drawImage(babyDragonImageBattle, x, y);
             }
         } else if (chosenCard.equals(archerImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(archerImageBattle.getUrl(),x,y));
-                gc.drawImage(archerImageBattle, x, y);
             }
         } else if (chosenCard.equals(arrowImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(arrowImage.getUrl(),x,y));
-                gc.drawImage(arrowImage, x, y);
             }
         } else if (chosenCard.equals(giantImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(giantImageBattle.getUrl(),x,y));
-                gc.drawImage(giantImageBattle, x, y);
             }
         } else if (chosenCard.equals(valkyrieImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(valkyrieImageBattle.getUrl(),x,y));
-                gc.drawImage(valkyrieImageBattle, x, y);
             }
         } else if (chosenCard.equals(pekaImage.getUrl())) {
 
             {
                 cardsInGame.add(new CardXY(pekaImageBattle.getUrl(),x,y));
-                gc.drawImage(pekaImageBattle, x, y);
             }
         } else if (chosenCard.equals(canonImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(canonImageBattle.getUrl(),x,y));
-                gc.drawImage(canonImageBattle, x, y);
             }
         } else if (chosenCard.equals(fireBallImage.getUrl())) {
             {
                 cardsInGame.add(new CardXY(fireBallImageBattle.getUrl(),x,y));
-                gc.drawImage(fireBallImageBattle, x, y);
             }
         }
     }

@@ -117,8 +117,16 @@ public class GameController implements Initializable {
                 gc.drawImage(new Image("/ground.png",653,400,false,false),0,0);
                 for(int o=0;o<cardsInGame.size();o++)
                 {
-
+                    if(cardsInGame.get(o).x<280||cardsInGame.get(o).x>310 &&(cardsInGame.get(o).y<260&&cardsInGame.get(o).y>250))
                     cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    else {
+                        if(cardsInGame.get(o).y>200 && cardsInGame.get(o).y<280)
+                            cardsInGame.get(o).y=cardsInGame.get(o).y+t/5;
+                        else if(cardsInGame.get(o).y<200 && cardsInGame.get(o).y>50)
+                            cardsInGame.get(o).y=cardsInGame.get(o).y-t/5;
+                        else
+                            cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    }
                     gc.drawImage(new Image(cardsInGame.get(o).card,50,50,false,false),cardsInGame.get(o).x,cardsInGame.get(o).y);
                 }
 
