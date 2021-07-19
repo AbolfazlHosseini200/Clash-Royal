@@ -19,9 +19,10 @@ import java.net.URL;
 import java.util.*;
 
 public class GameController implements Initializable {
-    int m = 3, s = 0, i = 0, elixirs = 0;
+    int m = 3, s = 0, i = 0, elixirs = 0,j=0;
     String chosenCard;
     private ArrayList<String> deck = null, alternativeDeck = new ArrayList<String>();
+    private ArrayList<CardXY> cardsInGame=new ArrayList<CardXY>();
     @FXML
     private Button game;
     @FXML
@@ -50,11 +51,19 @@ public class GameController implements Initializable {
     private final Image fireBallImage = new Image("/fireball_00000.png", 50, 50, false, false);
     private final Image babyDragonImage = new Image("/baby dragon_00000.png", 50, 50, false, false);
     private final Image frame = new Image("/frame.png");
-
+    private final Image babarImageBattle = new Image("/barbarian.png", 50, 50, false, false);
+    private final Image wizardImageBattle = new Image("/wizard.png", 50, 50, false, false);
+    private final Image pekaImageBattle = new Image("/mini pekka.png", 50, 50, false, false);
+    private final Image infernoImageBattle = new Image("/inferno.png", 50, 50, false, false);
+    private final Image giantImageBattle = new Image("/giant.png", 50, 50, false, false);
+    private final Image archerImageBattle = new Image("/archer.png", 50, 50, false, false);
+    private final Image valkyrieImageBattle = new Image("/valkyrie.png", 50, 50, false, false);
+    private final Image canonImageBattle = new Image("/canon.png", 50, 50, false, false);
+    private final Image fireBallImageBattle = new Image("/fireball.png", 50, 50, false, false);
+    private final Image babyDragonImageBattle = new Image("/baby dragon.png", 50, 50, false, false);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deck = Controller.legends;
-        //mainPane.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
     }
 
@@ -102,13 +111,17 @@ public class GameController implements Initializable {
         Timer t = new Timer();
         t.schedule(timerTask, 1000, 1000);
         final long startNanoTime = System.nanoTime();
-        new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
-//                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-//                double x = 200 + 20*t;
-//                // background image clears canvas
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
+                double t = (currentNanoTime - startNanoTime) / 10000000000.0;
+                gc.drawImage(new Image("/ground.png",653,400,false,false),0,0);
+                for(int o=0;o<cardsInGame.size();o++)
+                {
+
+                    cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    gc.drawImage(new Image(cardsInGame.get(o).card,50,50,false,false),cardsInGame.get(o).x,cardsInGame.get(o).y);
+                }
+
 //                if(0<=i && i<10 ) {
 //                    gc.drawImage(giantImage, x, 275);
 //                }if(i>=10 && i<=20 ){
@@ -126,7 +139,7 @@ public class GameController implements Initializable {
 
     @FXML
     public void gameDeck1(MouseEvent mouseEvent) {
-        if (gameDeck1.getImage().getUrl().equals(archerImage.getUrl()))
+        if (gameDeck1.getImage().getUrl().equals(archerImage.getUrl())) {
             if (elixirs > 2) {
                 chosenCard = archerImage.getUrl();
                 chosenCardImage.setImage(new Image(chosenCard));
@@ -138,139 +151,151 @@ public class GameController implements Initializable {
                 alternativeDeck.add(gameDeck5.getImage().getUrl());
                 deck.remove(n);
                 elixirs -= 3;
-            } else if (gameDeck1.getImage().getUrl().equals(arrowImage.getUrl()))
-                if (elixirs > 2) {
-                    chosenCard = arrowImage.getUrl();
-                    gameDeck1.setImage(gameDeck5.getImage());
-                    chosenCardImage.setImage(new Image(chosenCard));
-                    alternativeDeck.remove(chosenCard);
-                    int n = new Random().nextInt(deck.size());
-                    deck.add(chosenCard);
-                    gameDeck5.setImage(new Image(deck.get(n)));
-                    alternativeDeck.add(gameDeck5.getImage().getUrl());
-                    deck.remove(n);
-                    elixirs -= 3;
-                } else if (gameDeck1.getImage().getUrl().equals(babyDragonImage.getUrl()))
-                    if (elixirs > 3) {
-                        chosenCard = babyDragonImage.getUrl();
-                        gameDeck1.setImage(gameDeck5.getImage());
-                        chosenCardImage.setImage(new Image(chosenCard));
-                        alternativeDeck.remove(chosenCard);
-                        int n = new Random().nextInt(deck.size());
-                        deck.add(chosenCard);
-                        gameDeck5.setImage(new Image(deck.get(n)));
-                        alternativeDeck.add(gameDeck5.getImage().getUrl());
-                        deck.remove(n);
-                        elixirs -= 4;
-                    } else if (gameDeck1.getImage().getUrl().equals(babarImage.getUrl()))
-                        if (elixirs > 5) {
-                            gameDeck1.setImage(gameDeck5.getImage());
-                            chosenCard = babarImage.getUrl();
-                            chosenCardImage.setImage(new Image(chosenCard));
-                            alternativeDeck.remove(chosenCard);
-                            int n = new Random().nextInt(deck.size());
-                            deck.add(chosenCard);
-                            gameDeck5.setImage(new Image(deck.get(n)));
-                            alternativeDeck.add(gameDeck5.getImage().getUrl());
-                            deck.remove(n);
-                            elixirs -= 5;
-                        } else if (gameDeck1.getImage().getUrl().equals(fireBallImage.getUrl()))
-                            if (elixirs > 3) {
-                                chosenCard = fireBallImage.getUrl();
-                                gameDeck1.setImage(gameDeck5.getImage());
-                                chosenCardImage.setImage(new Image(chosenCard));
-                                alternativeDeck.remove(chosenCard);
-                                int n = new Random().nextInt(deck.size());
-                                deck.add(chosenCard);
-                                gameDeck5.setImage(new Image(deck.get(n)));
-                                alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                deck.remove(n);
-                                elixirs -= 4;
-                            } else if (gameDeck1.getImage().getUrl().equals(canonImage.getUrl()))
-                                if (elixirs > 2) {
-                                    chosenCard = canonImage.getUrl();
-                                    gameDeck1.setImage(gameDeck5.getImage());
-                                    chosenCardImage.setImage(new Image(chosenCard));
-                                    alternativeDeck.remove(chosenCard);
-                                    int n = new Random().nextInt(deck.size());
-                                    deck.add(chosenCard);
-                                    gameDeck5.setImage(new Image(deck.get(n)));
-                                    alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                    deck.remove(n);
-                                    elixirs -= 3;
-                                } else if (gameDeck1.getImage().getUrl().equals(giantImage.getUrl()))
-                                    if (elixirs > 4) {
-                                        chosenCard = giantImage.getUrl();
-                                        gameDeck1.setImage(gameDeck5.getImage());
-                                        chosenCardImage.setImage(new Image(chosenCard));
-                                        alternativeDeck.remove(chosenCard);
-                                        int n = new Random().nextInt(deck.size());
-                                        deck.add(chosenCard);
-                                        gameDeck5.setImage(new Image(deck.get(n)));
-                                        alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                        deck.remove(n);
-                                        elixirs -= 5;
-                                    } else if (gameDeck1.getImage().getUrl().equals(pekaImage.getUrl()))
-                                        if (elixirs > 3) {
-                                            chosenCard = pekaImage.getUrl();
-                                            gameDeck1.setImage(gameDeck5.getImage());
-                                            chosenCardImage.setImage(new Image(chosenCard));
-                                            alternativeDeck.remove(chosenCard);
-                                            int n = new Random().nextInt(deck.size());
-                                            deck.add(chosenCard);
-                                            gameDeck5.setImage(new Image(deck.get(n)));
-                                            alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                            deck.remove(n);
-                                            elixirs -= 4;
-                                        } else if (gameDeck1.getImage().getUrl().equals(rageImage.getUrl()))
-                                            if (elixirs > 2) {
-                                                chosenCard = rageImage.getUrl();
-                                                gameDeck1.setImage(gameDeck5.getImage());
-                                                chosenCardImage.setImage(new Image(chosenCard));
-                                                alternativeDeck.remove(chosenCard);
-                                                int n = new Random().nextInt(deck.size());
-                                                deck.add(chosenCard);
-                                                gameDeck5.setImage(new Image(deck.get(n)));
-                                                alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                                deck.remove(n);
-                                                elixirs -= 3;
-                                            } else if (gameDeck1.getImage().getUrl().equals(valkyrieImage.getUrl()))
-                                                if (elixirs > 3) {
-                                                    chosenCard = valkyrieImage.getUrl();
-                                                    gameDeck1.setImage(gameDeck5.getImage());
-                                                    chosenCardImage.setImage(new Image(chosenCard));
-                                                    alternativeDeck.remove(chosenCard);
-                                                    int n = new Random().nextInt(deck.size());
-                                                    deck.add(chosenCard);
-                                                    gameDeck5.setImage(new Image(deck.get(n)));
-                                                    alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                                    deck.remove(n);
-                                                    elixirs -= 4;
-                                                } else if (gameDeck1.getImage().getUrl().equals(wizardImage.getUrl()))
-                                                    if (elixirs > 4) {
-                                                        chosenCard = wizardImage.getUrl();
-                                                        gameDeck1.setImage(gameDeck5.getImage());
-                                                        chosenCardImage.setImage(new Image(chosenCard));
-                                                        alternativeDeck.remove(chosenCard);
-                                                        int n = new Random().nextInt(deck.size());
-                                                        deck.add(chosenCard);
-                                                        gameDeck5.setImage(new Image(deck.get(n)));
-                                                        alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                                        deck.remove(n);
-                                                        elixirs -= 5;
-                                                    } else if (gameDeck1.getImage().getUrl().equals(infernoImage.getUrl()))
-                                                        if (elixirs > 4) {
-                                                            chosenCard = infernoImage.getUrl();
-                                                            gameDeck1.setImage(gameDeck5.getImage());
-                                                            chosenCardImage.setImage(new Image(chosenCard));
-                                                            alternativeDeck.remove(chosenCard);
-                                                            int n = new Random().nextInt(deck.size());
-                                                            deck.add(chosenCard);
-                                                            gameDeck5.setImage(new Image(deck.get(n)));
-                                                            alternativeDeck.add(gameDeck5.getImage().getUrl());
-                                                            deck.remove(n);
-                                                            elixirs -= 5;
-                                                        }
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(arrowImage.getUrl())) {
+            if (elixirs > 2) {
+                chosenCard = arrowImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 3;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(babyDragonImage.getUrl())) {
+            if (elixirs > 3) {
+                chosenCard = babyDragonImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 4;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(babarImage.getUrl())) {
+            if (elixirs > 5) {
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCard = babarImage.getUrl();
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 5;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(fireBallImage.getUrl())) {
+            if (elixirs > 3) {
+                chosenCard = fireBallImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 4;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(canonImage.getUrl())) {
+            if (elixirs > 2) {
+                chosenCard = canonImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 3;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(giantImage.getUrl())) {
+            if (elixirs > 4) {
+                chosenCard = giantImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 5;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(pekaImage.getUrl())) {
+            if (elixirs > 3) {
+                chosenCard = pekaImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 4;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(rageImage.getUrl())) {
+            if (elixirs > 2) {
+                chosenCard = rageImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 3;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(valkyrieImage.getUrl())) {
+            if (elixirs > 3) {
+                chosenCard = valkyrieImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 4;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(wizardImage.getUrl())) {
+            if (elixirs > 4) {
+                chosenCard = wizardImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 5;
+            }
+        } else if (gameDeck1.getImage().getUrl().equals(infernoImage.getUrl())) {
+            if (elixirs > 4) {
+                chosenCard = infernoImage.getUrl();
+                gameDeck1.setImage(gameDeck5.getImage());
+                chosenCardImage.setImage(new Image(chosenCard));
+                alternativeDeck.remove(chosenCard);
+                int n = new Random().nextInt(deck.size());
+                deck.add(chosenCard);
+                gameDeck5.setImage(new Image(deck.get(n)));
+                alternativeDeck.add(gameDeck5.getImage().getUrl());
+                deck.remove(n);
+                elixirs -= 5;
+            }
+        }
     }
 
     @FXML
@@ -704,34 +729,68 @@ public class GameController implements Initializable {
     public void dropCard(MouseEvent mouseEvent) {
         double x = mouseEvent.getX();
         double y = mouseEvent.getY();
+        cardsInGame.add(new CardXY(chosenCard,x,y));
         if (chosenCard.equals(rageImage.getUrl())) {
-            gc.drawImage(rageImage, x, y);
+            {
+                cardsInGame.add(new CardXY(rageImage.getUrl(),x,y));
+                gc.drawImage(rageImage, x, y);
+            }
         } else if (chosenCard.equals(babarImage.getUrl())) {
-            gc.drawImage(babarImage, x, y);
+            {
+                cardsInGame.add(new CardXY(babarImageBattle.getUrl(),x,y));
+                gc.drawImage(babarImageBattle, x, y);
+            }
         } else if (chosenCard.equals(wizardImage.getUrl())) {
-            gc.drawImage(wizardImage, x, y);
+            {
+                cardsInGame.add(new CardXY(wizardImageBattle.getUrl(),x,y));
+                gc.drawImage(wizardImageBattle, x, y);
+            }
         } else if (chosenCard.equals(infernoImage.getUrl())) {
-            gc.drawImage(infernoImage, x, y);
+            {
+                cardsInGame.add(new CardXY(infernoImageBattle.getUrl(),x,y));
+                gc.drawImage(infernoImageBattle, x, y);
+            }
         } else if (chosenCard.equals(babyDragonImage.getUrl())) {
-            gc.drawImage(babyDragonImage, x, y);
+            {
+                cardsInGame.add(new CardXY(babyDragonImageBattle.getUrl(),x,y));
+                gc.drawImage(babyDragonImageBattle, x, y);
+            }
         } else if (chosenCard.equals(archerImage.getUrl())) {
-            gc.drawImage(archerImage, x, y);
+            {
+                cardsInGame.add(new CardXY(archerImageBattle.getUrl(),x,y));
+                gc.drawImage(archerImageBattle, x, y);
+            }
         } else if (chosenCard.equals(arrowImage.getUrl())) {
-            gc.drawImage(arrowImage, x, y);
+            {
+                cardsInGame.add(new CardXY(arrowImage.getUrl(),x,y));
+                gc.drawImage(arrowImage, x, y);
+            }
         } else if (chosenCard.equals(giantImage.getUrl())) {
-            gc.drawImage(giantImage, x, y);
-        }
-        else if (chosenCard.equals(valkyrieImage.getUrl())) {
-            gc.drawImage(valkyrieImage, x, y);
-        }
-        else if (chosenCard.equals(pekaImage.getUrl())) {
-            gc.drawImage(pekaImage, x, y);
-        }
-        else if (chosenCard.equals(canonImage.getUrl())) {
-            gc.drawImage(canonImage, x, y);
-        }
-        else if (chosenCard.equals(fireBallImage.getUrl())) {
-            gc.drawImage(fireBallImage, x, y);
+            {
+                cardsInGame.add(new CardXY(giantImageBattle.getUrl(),x,y));
+                gc.drawImage(giantImageBattle, x, y);
+            }
+        } else if (chosenCard.equals(valkyrieImage.getUrl())) {
+            {
+                cardsInGame.add(new CardXY(valkyrieImageBattle.getUrl(),x,y));
+                gc.drawImage(valkyrieImageBattle, x, y);
+            }
+        } else if (chosenCard.equals(pekaImage.getUrl())) {
+
+            {
+                cardsInGame.add(new CardXY(pekaImageBattle.getUrl(),x,y));
+                gc.drawImage(pekaImageBattle, x, y);
+            }
+        } else if (chosenCard.equals(canonImage.getUrl())) {
+            {
+                cardsInGame.add(new CardXY(canonImageBattle.getUrl(),x,y));
+                gc.drawImage(canonImageBattle, x, y);
+            }
+        } else if (chosenCard.equals(fireBallImage.getUrl())) {
+            {
+                cardsInGame.add(new CardXY(fireBallImageBattle.getUrl(),x,y));
+                gc.drawImage(fireBallImageBattle, x, y);
+            }
         }
     }
 }

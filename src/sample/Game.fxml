@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameController">
+<VBox prefHeight="540.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -56,11 +56,11 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="497.0" prefWidth="655.0" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="385.0" fitWidth="780.0" layoutX="-18.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ground2.png" />
+                  <Image url="@../ground.png" />
                </image>
             </ImageView>
             <Text layoutX="24.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
@@ -70,78 +70,45 @@
             <Label fx:id="crownLabel" layoutX="606.0" layoutY="14.0" text="0" />
             <Label fx:id="timeLabel" layoutX="75.0" layoutY="13.0" text="3:00" />
             <ProgressBar fx:id="elixirBar" layoutX="244.0" layoutY="13.0" prefWidth="200.0" progress="0.0" />
-            <ImageView fx:id="gameDeck2" fitHeight="66.0" fitWidth="59.0" layoutX="60.0" layoutY="367.0" onMouseClicked="#gameDeck2" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameDeck2" fitHeight="66.0" fitWidth="59.0" layoutX="61.0" layoutY="433.0" onMouseClicked="#gameDeck2" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gameDeck3" fitHeight="66.0" fitWidth="55.0" layoutX="121.0" layoutY="367.0" onMouseClicked="#gameDeck3" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameDeck3" fitHeight="66.0" fitWidth="55.0" layoutX="121.0" layoutY="433.0" onMouseClicked="#gameDeck3" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gameDeck4" fitHeight="66.0" fitWidth="55.0" layoutX="183.0" layoutY="367.0" onMouseClicked="#gameDeck4" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameDeck4" fitHeight="66.0" fitWidth="55.0" layoutX="182.0" layoutY="433.0" onMouseClicked="#gameDeck4" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gameDeck1" fitHeight="66.0" fitWidth="55.0" layoutY="367.0" onMouseClicked="#gameDeck1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameDeck1" fitHeight="66.0" fitWidth="55.0" layoutX="6.0" layoutY="433.0" onMouseClicked="#gameDeck1" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gameDeck5" fitHeight="43.0" fitWidth="34.0" layoutX="251.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameDeck5" fitHeight="43.0" fitWidth="34.0" layoutX="244.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
             <Button fx:id="game" layoutX="453.0" layoutY="9.0" mnemonicParsing="false" onAction="#game" text="Game" />
-            <Text layoutX="344.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chosen Card:" wrappingWidth="87.63428658246994" />
-            <ImageView fx:id="chosenCardImage" fitHeight="66.0" fitWidth="55.0" layoutX="444.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+            <Text layoutX="344.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chosen Card:" wrappingWidth="87.63428658246994" />
+            <ImageView fx:id="chosenCardImage" fitHeight="66.0" fitWidth="55.0" layoutX="444.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../frame.png" />
                </image>
             </ImageView>
             <Pane fx:id="mainPane" layoutX="55.0" layoutY="94.0" onMouseClicked="#dropCard" prefHeight="272.0" prefWidth="238.0">
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="169.0" layoutX="48.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../blue queen.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="87.0" fitWidth="169.0" layoutX="42.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../blue queen.png" />
-                     </image>
-                  </ImageView>
-                  <Canvas fx:id="canvas" height="272.0" layoutX="-5.0" layoutY="1.0" width="567.0" />
+                  <Canvas fx:id="canvas" height="385.0" layoutX="-56.0" layoutY="-47.0" width="655.0" />
                </children>
             </Pane>
-            <Pane fx:id="downPane" layoutX="325.0" layoutY="261.0" onMouseClicked="#dropCardCrownDown" prefHeight="105.0" prefWidth="189.0">
-               <children>
-                  <ImageView fitHeight="87.0" fitWidth="169.0" layoutX="61.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../red queen.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <Pane fx:id="downPane" layoutX="325.0" layoutY="261.0" onMouseClicked="#dropCardCrownDown" prefHeight="105.0" prefWidth="189.0" />
             <Pane fx:id="upPane" layoutX="325.0" layoutY="65.0" onMouseClicked="#dropCardCrownUp" prefHeight="105.0" prefWidth="189.0" />
-            <ImageView fitHeight="132.0" fitWidth="178.0" layoutX="-75.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../blue king.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="121.0" fitWidth="155.0" layoutX="499.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../red king.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="87.0" fitWidth="169.0" layoutX="394.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../red queen.png" />
-               </image>
-            </ImageView>
          </children>
     </AnchorPane>
   </children>

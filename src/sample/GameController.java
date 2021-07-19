@@ -19,9 +19,10 @@ import java.net.URL;
 import java.util.*;
 
 public class GameController implements Initializable {
-    int m = 3, s = 0, i = 0, elixirs = 0;
+    int m = 3, s = 0, i = 0, elixirs = 0,j=0;
     String chosenCard;
     private ArrayList<String> deck = null, alternativeDeck = new ArrayList<String>();
+    private ArrayList<CardXY> cardsInGame=new ArrayList<CardXY>();
     @FXML
     private Button game;
     @FXML
@@ -50,11 +51,19 @@ public class GameController implements Initializable {
     private final Image fireBallImage = new Image("/fireball_00000.png", 50, 50, false, false);
     private final Image babyDragonImage = new Image("/baby dragon_00000.png", 50, 50, false, false);
     private final Image frame = new Image("/frame.png");
-
+    private final Image babarImageBattle = new Image("/barbarian.png", 50, 50, false, false);
+    private final Image wizardImageBattle = new Image("/wizard.png", 50, 50, false, false);
+    private final Image pekaImageBattle = new Image("/mini pekka.png", 50, 50, false, false);
+    private final Image infernoImageBattle = new Image("/inferno.png", 50, 50, false, false);
+    private final Image giantImageBattle = new Image("/giant.png", 50, 50, false, false);
+    private final Image archerImageBattle = new Image("/archer.png", 50, 50, false, false);
+    private final Image valkyrieImageBattle = new Image("/valkyrie.png", 50, 50, false, false);
+    private final Image canonImageBattle = new Image("/canon.png", 50, 50, false, false);
+    private final Image fireBallImageBattle = new Image("/fireball.png", 50, 50, false, false);
+    private final Image babyDragonImageBattle = new Image("/baby dragon.png", 50, 50, false, false);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deck = Controller.legends;
-        //mainPane.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
     }
 
@@ -104,9 +113,15 @@ public class GameController implements Initializable {
         final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-//                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-//                double x = 200 + 20*t;
-//                // background image clears canvas
+                double t = (currentNanoTime - startNanoTime) / 10000000000.0;
+                gc.drawImage(new Image("/ground.png",653,400,false,false),0,0);
+                for(int o=0;o<cardsInGame.size();o++)
+                {
+
+                    cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    gc.drawImage(new Image(cardsInGame.get(o).card,50,50,false,false),cardsInGame.get(o).x,cardsInGame.get(o).y);
+                }
+
 //                if(0<=i && i<10 ) {
 //                    gc.drawImage(giantImage, x, 275);
 //                }if(i>=10 && i<=20 ){
@@ -715,29 +730,54 @@ public class GameController implements Initializable {
         double x = mouseEvent.getX();
         double y = mouseEvent.getY();
         if (chosenCard.equals(rageImage.getUrl())) {
-            gc.drawImage(rageImage, x, y);
+            {
+                cardsInGame.add(new CardXY(rageImage.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(babarImage.getUrl())) {
-            gc.drawImage(babarImage, x, y);
+            {
+                cardsInGame.add(new CardXY(babarImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(wizardImage.getUrl())) {
-            gc.drawImage(wizardImage, x, y);
+            {
+                cardsInGame.add(new CardXY(wizardImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(infernoImage.getUrl())) {
-            gc.drawImage(infernoImage, x, y);
+            {
+                cardsInGame.add(new CardXY(infernoImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(babyDragonImage.getUrl())) {
-            gc.drawImage(babyDragonImage, x, y);
+            {
+                cardsInGame.add(new CardXY(babyDragonImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(archerImage.getUrl())) {
-            gc.drawImage(archerImage, x, y);
+            {
+                cardsInGame.add(new CardXY(archerImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(arrowImage.getUrl())) {
-            gc.drawImage(arrowImage, x, y);
+            {
+                cardsInGame.add(new CardXY(arrowImage.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(giantImage.getUrl())) {
-            gc.drawImage(giantImage, x, y);
+            {
+                cardsInGame.add(new CardXY(giantImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(valkyrieImage.getUrl())) {
-            gc.drawImage(valkyrieImage, x, y);
+            {
+                cardsInGame.add(new CardXY(valkyrieImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(pekaImage.getUrl())) {
-            gc.drawImage(pekaImage, x, y);
+
+            {
+                cardsInGame.add(new CardXY(pekaImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(canonImage.getUrl())) {
-            gc.drawImage(canonImage, x, y);
+            {
+                cardsInGame.add(new CardXY(canonImageBattle.getUrl(),x,y));
+            }
         } else if (chosenCard.equals(fireBallImage.getUrl())) {
-            gc.drawImage(fireBallImage, x, y);
+            {
+                cardsInGame.add(new CardXY(fireBallImageBattle.getUrl(),x,y));
+            }
         }
     }
 }
