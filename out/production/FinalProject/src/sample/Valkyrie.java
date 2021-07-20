@@ -8,5 +8,6 @@ public class Valkyrie extends Troops{
         hp=880;
         dmg=120;
         rng=80;
+        speed=0.33;
     }
 }

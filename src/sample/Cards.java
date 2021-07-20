@@ -5,6 +5,7 @@ import java.net.URL;
 public class Cards{
     public boolean isInRange=false;
     public double hitSpd;
+    public double speed;
     double hp;
      double dmg;
      double rng;

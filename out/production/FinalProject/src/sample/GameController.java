@@ -80,7 +80,7 @@ public class GameController implements Initializable {
         }
         enemyForce.add(new CardXY(new queenTower(null),480,25));
         enemyForce.add(new CardXY(new queenTower(null),480,280));
-        enemyForce.add(new CardXY(new kingTower(null),520,150));
+        enemyForce.add(new CardXY(new kingTower(null),550,150));
         gameDeck1.setImage(new Image(alternativeDeck.get(0)));
         gameDeck2.setImage(new Image(alternativeDeck.get(1)));
         gameDeck3.setImage(new Image(alternativeDeck.get(2)));
@@ -130,7 +130,7 @@ public class GameController implements Initializable {
                 {
                     for(int oo=0;oo<enemyForce.size();oo++)
                     {
-                        //System.out.println(cardsInGame.get(o).card.rng);
+
                         if(new Point2D(cardsInGame.get(o).x,cardsInGame.get(o).y).distance(new Point2D(enemyForce.get(oo).x,enemyForce.get(oo).y))<cardsInGame.get(o).card.rng)
                         {
                           cardsInGame.get(o).card.isInRange=true;
@@ -152,27 +152,30 @@ public class GameController implements Initializable {
                 //army drawing
                 for(int o=0;o<cardsInGame.size();o++)
                 {
-                    if(cardsInGame.get(o).card.isInRange||cardsInGame.get(o).card instanceof Rage||cardsInGame.get(o).card instanceof Arrow||cardsInGame.get(o).card instanceof Inferno)
+                    if(cardsInGame.get(o).card.isInRange||cardsInGame.get(o).card instanceof Rage||cardsInGame.get(o).card instanceof Arrow||cardsInGame.get(o).card instanceof Inferno||cardsInGame.get(o).card instanceof Canon||cardsInGame.get(o).card instanceof FireBall)
                     {
 
                     }
-                    else if(cardsInGame.get(o).x<500)
-                    { if(cardsInGame.get(o).x<280||cardsInGame.get(o).x>310 &&(cardsInGame.get(o).y<260&&cardsInGame.get(o).y>250))
-                    cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                    else if(cardsInGame.get(o).x<550)
+                    {
+                        double speed=((Troops)cardsInGame.get(o).card).speed;
+                        if(cardsInGame.get(o).x<280||cardsInGame.get(o).x>310 &&(cardsInGame.get(o).y<260&&cardsInGame.get(o).y>250))
+                    cardsInGame.get(o).x=cardsInGame.get(o).x+t*speed;
                     else {
                         if(cardsInGame.get(o).y>200 && cardsInGame.get(o).y<280)
-                            cardsInGame.get(o).y=cardsInGame.get(o).y+t/5;
+                            cardsInGame.get(o).y=cardsInGame.get(o).y+t*speed;
                         else if(cardsInGame.get(o).y<200 && cardsInGame.get(o).y>30)
-                            cardsInGame.get(o).y=cardsInGame.get(o).y-t/5;
+                            cardsInGame.get(o).y=cardsInGame.get(o).y-t*speed;
                         else
-                            cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                            cardsInGame.get(o).x=cardsInGame.get(o).x+t*speed;
                     }}
                     else
                     {
-                        if(cardsInGame.get(o).y<200)
-                            cardsInGame.get(o).x=cardsInGame.get(o).x+t/5;
+                        double speed=((Troops)cardsInGame.get(o).card).speed;
+                        if(cardsInGame.get(o).y<150)
+                            cardsInGame.get(o).y=cardsInGame.get(o).y+t*speed;
                         else
-                            cardsInGame.get(o).y=cardsInGame.get(o).y-t/5;
+                            cardsInGame.get(o).y=cardsInGame.get(o).y-t*speed;
                     }
                     gc.drawImage(new Image(cardsInGame.get(o).card.getUrl(),50,50,false,false),cardsInGame.get(o).x,cardsInGame.get(o).y);
                 }
@@ -812,9 +815,9 @@ public class GameController implements Initializable {
         } else if (chosenCard.equals(babarImage.getUrl())&&chosenCard!=null) {
             {
                 cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x,y));
-                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x+10,y+10));
-                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x+10,y));
-                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x,y+10));
+                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x+20,y+20));
+                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x+20,y));
+                cardsInGame.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),x,y+20));
                 chosenCardImage.setImage(frame);
             }
         } else if (chosenCard.equals(wizardImage.getUrl())&&chosenCard!=null) {
@@ -835,7 +838,7 @@ public class GameController implements Initializable {
         } else if (chosenCard.equals(archerImage.getUrl())&&chosenCard!=null) {
             {
                 cardsInGame.add(new CardXY(new Archer(archerImageBattle.getUrl()),x,y));
-                cardsInGame.add(new CardXY(new Archer(archerImageBattle.getUrl()),x+10,y+10));
+                cardsInGame.add(new CardXY(new Archer(archerImageBattle.getUrl()),x+20,y+20));
                 chosenCardImage.setImage(frame);
             }
         } else if (chosenCard.equals(arrowImage.getUrl())&&chosenCard!=null) {

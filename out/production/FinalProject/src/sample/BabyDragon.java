@@ -8,5 +8,6 @@ public class BabyDragon extends Troops{
         hp=800;
         dmg=100;
         rng=100;
+        speed=0.5;
     }
 }

@@ -8,5 +8,6 @@ public class Giant extends Troops{
         hp=2000;
         dmg=126;
         rng=50;
+        speed=0.2;
     }
 }

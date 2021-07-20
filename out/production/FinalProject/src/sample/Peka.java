@@ -8,5 +8,6 @@ public class Peka extends Troops{
         hp=600;
         dmg=325;
         rng=50;
+        speed=0.5;
     }
 }

@@ -8,5 +8,6 @@ public class Wizard extends Troops{
         hp=340;
         dmg=130;
         rng=80;
+        speed=0.33;
     }
 }

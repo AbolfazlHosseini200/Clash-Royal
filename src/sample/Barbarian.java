@@ -8,5 +8,6 @@ public class Barbarian extends Troops{
         hp=300;
         dmg=75;
         rng=50;
+        speed=0.33;
     }
 }
