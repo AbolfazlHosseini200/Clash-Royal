@@ -2,7 +2,7 @@ package sample;
 
 public class BabyDragon extends Troops{
     public BabyDragon(String url) {
-        super(800.0,100.0,100.0,url,3);
+        super(800.0,100.0,100.0,url,1.8);
         number=1;
         hitSpd=1.8;
         hp=800;

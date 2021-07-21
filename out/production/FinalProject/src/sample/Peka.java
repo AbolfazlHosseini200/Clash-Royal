@@ -2,7 +2,7 @@ package sample;
 
 public class Peka extends Troops{
     public Peka(String url) {
-        super(600,325,20,url,2);
+        super(600,325.0,20.0,url,1.8);
         number=1;
         hitSpd=2;
         hp=600;

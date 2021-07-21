@@ -2,7 +2,7 @@ package sample;
 
 public class queenTower extends Cards{
     public queenTower(String url) {
-        super(100000,100,50,url,0.0);
-        hp=5000;
+        super(3000,100,100,url,0.5);
+        hp=3000;
     }
 }
