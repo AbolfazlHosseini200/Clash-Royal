@@ -499,7 +499,7 @@
                               <Image url="@../photo_2021-07-15_11-13-41.png" />
                            </image>
                         </ImageView>
-                        <CheckBox blendMode="HARD_LIGHT" layoutX="47.0" layoutY="54.0" mnemonicParsing="false" text="Random Bot">
+                        <CheckBox fx:id="botCheck" blendMode="HARD_LIGHT" layoutX="47.0" layoutY="54.0" mnemonicParsing="false" text="Random Bot">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="24.0" />
                            </font>
