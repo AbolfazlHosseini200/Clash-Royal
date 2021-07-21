@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -38,6 +40,7 @@ public class Controller implements Initializable{
     private final Image babyDragonImage=new Image("/baby dragon_00000.png");
     private final Image frame=new Image("/frame.png");
     public static Player player;
+    private static MediaPlayer menuSong,battleSong;
     public static boolean checked,intelligence;
     @FXML
     private Button done;
@@ -1218,6 +1221,8 @@ public class Controller implements Initializable{
             stage.setScene(scene);
             stage.showAndWait();
             ArrayList<String> deck=player.getDeck();
+           menuSong=new MediaPlayer(new Media(new File("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\battle.mp3").toURI().toString()));
+            menuSong.play();
         Main.changeSceneToMainMenu();
 
     }
@@ -1352,6 +1357,9 @@ public class Controller implements Initializable{
         {
             intelligence=intelligentBot.isSelected();
             checked=botCheck.isSelected();
+            battleSong=new MediaPlayer(new Media(new File("C:\\Users\\AmirHossein\\Desktop\\Coding Stuff\\Clash Royal\\FinalProject\\src\\battle.mp3").toURI().toString()));
+            menuSong.pause();
+            battleSong.play();
             Main.changeSceneToGame();
         }
         else
