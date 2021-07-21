@@ -1104,15 +1104,6 @@ double j=0.0;
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
-
-    @FXML
-    public void dropCardCrownDown(MouseEvent mouseEvent) {
-    }
-
-    @FXML
-    public void dropCardCrownUp(MouseEvent mouseEvent) {
-    }
-
     @FXML
     public void dropCard(MouseEvent mouseEvent) {
         double x = mouseEvent.getX();
