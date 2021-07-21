@@ -38,11 +38,11 @@ public class Controller implements Initializable{
     private final Image babyDragonImage=new Image("/baby dragon_00000.png");
     private final Image frame=new Image("/frame.png");
     public static Player player;
-    public static boolean checked;
+    public static boolean checked,intelligence;
     @FXML
     private Button done;
     @FXML
-    private CheckBox botCheck;
+    private CheckBox botCheck,intelligentBot;
     @FXML
     private Button doneSignUp;
     @FXML
@@ -1350,6 +1350,7 @@ public class Controller implements Initializable{
     private void trainingBattle(ActionEvent event) throws IOException {
         if(legends.size()==8)
         {
+            intelligence=intelligentBot.isSelected();
             checked=botCheck.isSelected();
             Main.changeSceneToGame();
         }

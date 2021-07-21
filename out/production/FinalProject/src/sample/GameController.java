@@ -27,6 +27,7 @@ public class GameController implements Initializable {
     private ArrayList<String> deck = null, alternativeDeck = new ArrayList<String>();
     private ArrayList<String> enemyDeck=new ArrayList<String>();
     private ArrayList<String>enemyAlternative=new ArrayList<String>();
+    private ArrayList<String> wholeCards =new ArrayList<String>();
     private ArrayList<CardXY> cardsInGame=new ArrayList<CardXY>();
     private ArrayList<CardXY> enemyForce=new ArrayList<CardXY>();
     @FXML
@@ -58,6 +59,20 @@ public class GameController implements Initializable {
     private final Image valkD=new Image("/valkD.png",50,50,false,false);
     private final Image dragonu=new Image("/dragonU.png",50,50,false,false);
     private final Image dragonD=new Image("/dragonD.png",50,50,false,false);
+    private final Image barbaru2=new Image("/barbarU2.png",50,50,false,false);
+    private final Image barbard2=new Image("/barbarD2.png",50,50,false,false);
+    private final Image wizardu2=new Image("/wizardU2.png",50,50,false,false);
+    private final Image wizardd2=new Image("/wizardD2.png",50,50,false,false);
+    private final Image miniu2=new Image("/miniU2.png",50,50,false,false);
+    private final Image minid2=new Image("/miniD2.png",50,50,false,false);
+    private final Image giantu2=new Image("/giantU2.png",50,50,false,false);
+    private final Image giantd2=new Image("/giantD2.png",50,50,false,false);
+    private final Image archeru2=new Image("/archerU2.png",50,50,false,false);
+    private final Image archerd2=new Image("/archerD2.png",50,50,false,false);
+    private final Image valku2=new Image("/valkU2.png",50,50,false,false);
+    private final Image valkD2=new Image("/valkD2.png",50,50,false,false);
+    private final Image dragonu2=new Image("/dragonU.png",50,50,false,false);
+    private final Image dragonD2=new Image("/dragonD.png",50,50,false,false);
     private final Image babarImage = new Image("/barbarian_00000.png", 50, 50, false, false);
     private final Image wizardImage = new Image("/wizard_00000.png", 50, 50, false, false);
     private final Image pekaImage = new Image("/mini pekka_00000.png", 50, 50, false, false);
@@ -86,10 +101,36 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deck = Controller.legends;
         gc = canvas.getGraphicsContext2D();
+        wholeCards.add(babarImage.getUrl());
+        wholeCards.add(wizardImage.getUrl());
+        wholeCards.add(babarImage.getUrl());
+        wholeCards.add(fireBallImage.getUrl());
+        wholeCards.add(archerImage.getUrl());
+        wholeCards.add(arrowImage.getUrl());
+        wholeCards.add(giantImage.getUrl());
+        wholeCards.add(valkyrieImage.getUrl());
+        wholeCards.add(canonImage.getUrl());
+        wholeCards.add(infernoImage.getUrl());
+        wholeCards.add(rageImage.getUrl());
+        wholeCards.add(pekaImage.getUrl());
     }
 
     @FXML
     private void game(ActionEvent event) {
+        for (int i=0;i<8;i++)
+        {
+            int n;
+            n = new Random().nextInt(wholeCards.size());
+            enemyDeck.add(wholeCards.get(n));
+            wholeCards.remove(n);
+        }
+        for(int i=0;i<5;i++)
+        {
+            int n;
+            n = new Random().nextInt(enemyDeck.size());
+            enemyAlternative.add(enemyDeck.get(n));
+            enemyDeck.remove(n);
+        }
         for (int i = 0; i < 5; i++) {
             int n;
             n = new Random().nextInt(deck.size());
@@ -104,6 +145,104 @@ public class GameController implements Initializable {
         gameDeck3.setImage(new Image(alternativeDeck.get(2)));
         gameDeck4.setImage(new Image(alternativeDeck.get(3)));
         gameDeck5.setImage(new Image(alternativeDeck.get(4)));
+        TimerTask timerTask2=new TimerTask() {
+            @Override
+            public void run() {
+                int n=new Random().nextInt(enemyAlternative.size());
+                double x=0,y=0;
+                if(Controller.intelligence)
+                {
+                    for(int i=0;i<cardsInGame.size();i++)
+                    {
+                        if(!(cardsInGame.get(i).card instanceof queenTower ||cardsInGame.get(i).card instanceof kingTower))
+                            if(new Point2D(cardsInGame.get(i).x,cardsInGame.get(i).y).distance(310,25)<new  Point2D(cardsInGame.get(i).x,cardsInGame.get(i).y).distance(310,280))
+                            {
+                                y=25.0;
+                                x=new Random().nextInt(160)+310;
+                                break;
+                            }else
+                            {
+                                y=280.0;
+                                x=new Random().nextInt(160)+310;
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    y=new Random().nextInt(255)+25;
+                    x=new Random().nextInt(160)+310;
+                }
+                if (enemyAlternative.get(n).equals(rageImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Rage(rageImage.getUrl()),rageImage.getUrl(),rageImage.getUrl(),x,y));
+                    }
+                } else if (enemyAlternative.get(n).equals(babarImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),barbaru2.getUrl(),barbard2.getUrl(),x,y));
+                        enemyForce.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),barbaru2.getUrl(),barbard2.getUrl(),x+20,y+20));
+                        enemyForce.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),barbaru2.getUrl(),barbard2.getUrl(),x+20,y));
+                        enemyForce.add(new CardXY(new Barbarian(babarImageBattle.getUrl()),barbaru2.getUrl(),barbard2.getUrl(),x,y+20));
+                    }
+                } else if (enemyAlternative.get(n).equals(wizardImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Wizard(wizardImageBattle.getUrl()),wizardu2.getUrl(),wizardd2.getUrl(),x,y));
+                    }
+                } else if (enemyAlternative.get(n).equals(infernoImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Inferno(infernoImageBattle.getUrl()),infernoImageBattle.getUrl(),infernoImageBattle.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(babyDragonImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new BabyDragon(babyDragonImageBattle.getUrl()),dragonu2.getUrl(),dragonD2.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(archerImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Archer(archerImageBattle.getUrl()),archerd2.getUrl(),archeru2.getUrl(),x,y));
+                        enemyForce.add(new CardXY(new Archer(archerImageBattle.getUrl()),archerd2.getUrl(),archeru2.getUrl(),x+20,y+20));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(arrowImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Arrow(arrowImage.getUrl()),arrowImage.getUrl(),arrowImage.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(giantImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Giant(giantImageBattle.getUrl()),giantd2.getUrl(),giantu2.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(valkyrieImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Valkyrie(valkyrieImageBattle.getUrl()),valkD2.getUrl(),valku2.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(pekaImage.getUrl())) {
+
+                    {
+                        enemyForce.add(new CardXY(new Peka(pekaImageBattle.getUrl()),minid2.getUrl(),miniu2.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(canonImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new Canon(canonImageBattle.getUrl()),canonImageBattle.getUrl(),canonImageBattle.getUrl(),x,y));
+
+                    }
+                } else if (enemyAlternative.get(n).equals(fireBallImage.getUrl())) {
+                    {
+                        enemyForce.add(new CardXY(new FireBall(fireBallImageBattle.getUrl()),fireBallImageBattle.getUrl(),fireBallImageBattle.getUrl(),x,y));
+
+                    }
+                }
+                enemyAlternative.add(enemyDeck.get(new Random().nextInt(enemyDeck.size())));
+                enemyDeck.add(enemyAlternative.get(n));
+                enemyAlternative.remove(n);
+            }
+        };
+        Timer t2 = new Timer();
+        t2.schedule(timerTask2, 5000, 5000);
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -133,6 +272,7 @@ public class GameController implements Initializable {
                 j++;
                 if(j>5000)
                     j=0;
+
             }
         };
         Timer t = new Timer();
@@ -148,9 +288,9 @@ public class GameController implements Initializable {
                     t = (currentNanoTime - startNanoTime) / 10000000000.0;
                 gc.drawImage(new Image("/ground.png",653,400,false,false),0,0);
                 //army shooting
+                System.out.println(cardsInGame.size());
                 for(int o=0;o<cardsInGame.size();o++)
                 {
-                    CardXY cards=null;
                     for(int oo=0;oo<enemyForce.size();oo++)
                     {
 
@@ -218,23 +358,37 @@ public class GameController implements Initializable {
                 //enemy drawing
                 for(int o=0;o<enemyForce.size();o++)
                 {
-                    if(enemyForce.get(o).card.isInRange || enemyForce.get(o).card instanceof queenTower|| enemyForce.get(o).card instanceof kingTower|| enemyForce.get(o).card instanceof Arrow|| enemyForce.get(o).card instanceof Inferno|| enemyForce.get(o).card instanceof Canon|| enemyForce.get(o).card instanceof Rage)
+                    if(enemyForce.get(o).card.isInRange||enemyForce.get(o).card instanceof Rage||enemyForce.get(o).card instanceof Arrow||enemyForce.get(o).card instanceof Inferno||enemyForce.get(o).card instanceof Canon||enemyForce.get(o).card instanceof FireBall||enemyForce.get(o).card instanceof queenTower||enemyForce.get(o).card instanceof kingTower)
                     {
 
                     }
-                    else if(enemyForce.get(o).x<280||enemyForce.get(o).x>310 &&(enemyForce.get(o).y<260&&enemyForce.get(o).y>250))
-                        enemyForce.get(o).x=enemyForce.get(o).x+t/5;
-                    else {
-                        if(enemyForce.get(o).y>200 && enemyForce.get(o).y<280)
-                            enemyForce.get(o).y=enemyForce.get(o).y+t/5;
-                        else if(enemyForce.get(o).y<200 && enemyForce.get(o).y>50)
-                            enemyForce.get(o).y=cardsInGame.get(o).y-t/5;
-                        else
-                            enemyForce.get(o).x=enemyForce.get(o).x+t/5;
-                    }
-                    if(enemyForce.get(o).card.url!=null)
-                    gc.drawImage(new Image(enemyForce.get(o).card.getUrl(),50,50,false,false),enemyForce.get(o).x,enemyForce.get(o).y);
-                }
+                    else
+                        if (enemyForce.get(o).x > 50) {
+                            double speed = ((Troops) enemyForce.get(o).card).speed;
+                            if (enemyForce.get(o).x < 280 || enemyForce.get(o).x > 310 && (enemyForce.get(o).y < 260 && enemyForce.get(o).y > 250))
+                                enemyForce.get(o).x = enemyForce.get(o).x - t * speed;
+                            else {
+                                if (enemyForce.get(o).y > 200 && enemyForce.get(o).y < 280)
+                                    enemyForce.get(o).y = enemyForce.get(o).y + t * speed;
+                                else if (enemyForce.get(o).y < 200 && enemyForce.get(o).y > 30)
+                                    enemyForce.get(o).y = enemyForce.get(o).y - t * speed;
+                                else
+                                    enemyForce.get(o).x = enemyForce.get(o).x - t * speed;
+                            }
+                        } else {
+                            double speed = ((Troops) enemyForce.get(o).card).speed;
+                            if (enemyForce.get(o).y < 150)
+                                enemyForce.get(o).y = enemyForce.get(o).y + t * speed;
+                            else
+                                enemyForce.get(o).y = enemyForce.get(o).y - t * speed;
+                        }
+                        if(!(enemyForce.get(o).card instanceof queenTower ||enemyForce.get(o).card instanceof kingTower )) {
+                            if (jj < 15)
+                                gc.drawImage(new Image(enemyForce.get(o).dPic, 50, 50, false, false), enemyForce.get(o).x, enemyForce.get(o).y);
+                            else
+                                gc.drawImage(new Image(enemyForce.get(o).uPic, 50, 50, false, false), enemyForce.get(o).x, enemyForce.get(o).y);
+                        }
+                        }
                 if(jj>30)
                     jj=0;
                 if(jjj>150)

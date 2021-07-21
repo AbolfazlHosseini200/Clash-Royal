@@ -520,28 +520,7 @@
                               </LinearGradient>
                            </textFill>
                         </CheckBox>
-                        <CheckBox layoutX="47.0" layoutY="97.0" mnemonicParsing="false" text="Minimum Intelligence Bot">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="24.0" />
-                           </font>
-                           <textFill>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color blue="0.859649121761322" green="0.7984035611152649" red="0.12470218539237976" />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
-                                       <color>
-                                          <Color blue="0.8588235378265381" green="0.800000011920929" red="0.125490203499794" />
-                                       </color>
-                                    </Stop>
-                                 </stops>
-                              </LinearGradient>
-                           </textFill>
-                        </CheckBox>
-                        <CheckBox layoutX="47.0" layoutY="143.0" mnemonicParsing="false" text="Intelligent Bot">
+                        <CheckBox fx:id="intelligentBot" layoutX="47.0" layoutY="143.0" mnemonicParsing="false" text="Intelligent Bot">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="24.0" />
                            </font>
