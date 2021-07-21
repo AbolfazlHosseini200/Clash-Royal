@@ -107,8 +107,6 @@
                   <Canvas fx:id="canvas" height="385.0" layoutX="-56.0" layoutY="-47.0" width="655.0" />
                </children>
             </Pane>
-            <Pane fx:id="downPane" layoutX="325.0" layoutY="261.0" onMouseClicked="#dropCardCrownDown" prefHeight="105.0" prefWidth="189.0" />
-            <Pane fx:id="upPane" layoutX="325.0" layoutY="65.0" onMouseClicked="#dropCardCrownUp" prefHeight="105.0" prefWidth="189.0" />
          </children>
     </AnchorPane>
   </children>
