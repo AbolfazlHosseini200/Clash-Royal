@@ -26,9 +26,53 @@ import javax.swing.text.html.HTMLDocument;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * The type Game controller.
+ */
 public class GameController implements Initializable {
-    int m = 3, s = 0, i = 0, elixirs = 0, jj = -1, jjj = 0, crowns1 = 0, crowns2 = 0, remove = -1;
+    /**
+     * The M.
+     */
+    int m = 3,
+    /**
+     * The S.
+     */
+    s = 0,
+    /**
+     * The .
+     */
+    i = 0,
+    /**
+     * The Elixirs.
+     */
+    elixirs = 0,
+    /**
+     * The Jj.
+     */
+    jj = -1,
+    /**
+     * The Jjj.
+     */
+    jjj = 0,
+    /**
+     * The Crowns 1.
+     */
+    crowns1 = 0,
+    /**
+     * The Crowns 2.
+     */
+    crowns2 = 0,
+    /**
+     * The Remove.
+     */
+    remove = -1;
+    /**
+     * The J.
+     */
     double j = 0.0;
+    /**
+     * The Chosen card.
+     */
     String chosenCard;
     private ArrayList<String> deck = null, alternativeDeck = new ArrayList<String>();
     private ArrayList<String> enemyDeck = new ArrayList<String>();
@@ -46,8 +90,22 @@ public class GameController implements Initializable {
     private ImageView gameDeck1, gameDeck2, gameDeck3, gameDeck4, gameDeck5;
     @FXML
     private Canvas canvas;
+    /**
+     * The Main pane.
+     */
     @FXML
-    public Pane mainPane, upPane, downPane;
+    public Pane mainPane,
+    /**
+     * The Up pane.
+     */
+    upPane,
+    /**
+     * The Down pane.
+     */
+    downPane;
+    /**
+     * The Gc.
+     */
     GraphicsContext gc;
     @FXML
     private ImageView chosenCardImage;
@@ -338,6 +396,19 @@ public class GameController implements Initializable {
                 if (m == 2 && s > 50)
                     t = (currentNanoTime - startNanoTime) / 10000000000.0;
                 gc.drawImage(new Image("/ground.png", 653, 400, false, false), 0, 0);
+                //ruined castles
+                for (int i=0;i<enemyForce.size();i++)
+                {
+                    if(enemyForce.get(i).card instanceof queenTower || enemyForce.get(i).card instanceof kingTower)
+                        if(enemyForce.get(i).card.hp<1)
+                            gc.drawImage(fire,enemyForce.get(i).x,enemyForce.get(i).y);
+                }
+                for (int i=0;i<cardsInGame.size();i++)
+                {
+                    if(cardsInGame.get(i).card instanceof queenTower || cardsInGame.get(i).card instanceof kingTower)
+                        if(cardsInGame.get(i).card.hp<1)
+                            gc.drawImage(fire,cardsInGame.get(i).x,cardsInGame.get(i).y);
+                }
                 for (int i = 0; i < cardsInGame.size(); i++) {
                     if (cardsInGame.get(i).card instanceof FireBall || cardsInGame.get(i).card instanceof Arrow)
                         if (new Date().getTime() - cardsInGame.get(i).card.lastHit.getTime() < 1000)
@@ -436,7 +507,9 @@ public class GameController implements Initializable {
                 for (int o = 0; o < enemyForce.size(); o++) {
                     for (int oo = 0; oo < cardsInGame.size(); oo++) {
 
-                        if (new Point2D(enemyForce.get(o).x, enemyForce.get(o).y).distance(new Point2D(cardsInGame.get(oo).x, cardsInGame.get(oo).y)) < enemyForce.get(o).card.rng) {
+                        if (new Point2D(enemyForce.get(o).x, enemyForce.get(o).y).distance(new Point2D(cardsInGame.get(oo).x, cardsInGame.get(oo).y)) < enemyForce.get(o).card.rng)
+                            if((enemyForce.get(o).card.target==(Place.AIRandGROUND))||enemyForce.get(o).card.position==(Place.AIRandGROUND)||(enemyForce.get(o).card.position==(Place.BUILDING))||(enemyForce.get(o).card.target==(Place.GROUND)&&cardsInGame.get(oo).card.position==(Place.GROUND))||(cardsInGame.get(oo).card.position==(Place.BUILDING)))
+                            {
                             enemyForce.get(o).card.isInRange = true;
                             if (!(enemyForce.get(o).card instanceof queenTower || enemyForce.get(o).card instanceof kingTower)) {
                                 if (jj < 15)
@@ -557,8 +630,9 @@ public class GameController implements Initializable {
     }
 
     private void setWinner() {
+
         if (Integer.parseInt(crownLabel.getText()) > crowns2) {
-            Stage stage = new Stage();
+            Controller.player.addHistory(new BattleHistory(Calendar.getInstance().getTime().toString(),"you","bot"));Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setMinWidth(250);
             stage.setTitle("Congrats");
@@ -575,6 +649,7 @@ public class GameController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
         } else {
+            Controller.player.addHistory(new BattleHistory(Calendar.getInstance().getTime().toString(),"bot","bot"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setMinWidth(250);
@@ -599,6 +674,11 @@ public class GameController implements Initializable {
         Main.changeSceneToMainMenu();
     }
 
+    /**
+     * Game deck 1.
+     *
+     * @param mouseEvent the mouse event
+     */
     @FXML
     public void gameDeck1(MouseEvent mouseEvent) {
         if (gameDeck1.getImage().getUrl().equals(archerImage.getUrl())) {
@@ -760,6 +840,11 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Game deck 2.
+     *
+     * @param event the event
+     */
     @FXML
     public void gameDeck2(MouseEvent event) {
         if (gameDeck2.getImage().getUrl().equals(archerImage.getUrl()) && elixirs > 2) {
@@ -897,6 +982,11 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Game deck 3.
+     *
+     * @param actionEvent the action event
+     */
     @FXML
     public void gameDeck3(MouseEvent actionEvent) {
         if (gameDeck3.getImage().getUrl().equals(archerImage.getUrl()) && elixirs > 2) {
@@ -1034,6 +1124,11 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Game deck 4.
+     *
+     * @param event the event
+     */
     @FXML
     public void gameDeck4(MouseEvent event) {
         if (gameDeck4.getImage().getUrl().equals(archerImage.getUrl()) && elixirs > 2) {
@@ -1171,14 +1266,29 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Sets deck.
+     *
+     * @param deck the deck
+     */
     public void setDeck(ArrayList<String> deck) {
         this.deck = deck;
     }
 
+    /**
+     * Sets canvas.
+     *
+     * @param canvas the canvas
+     */
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
 
+    /**
+     * Drop card.
+     *
+     * @param mouseEvent the mouse event
+     */
     @FXML
     public void dropCard(MouseEvent mouseEvent) {
         double x = mouseEvent.getX();

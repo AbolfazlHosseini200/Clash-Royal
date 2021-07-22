@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Barbarian.
+ */
 public class Barbarian extends Troops{
+    /**
+     * Instantiates a new Barbarian.
+     *
+     * @param url the url
+     */
     public Barbarian(String url) {
         super(300.0,75,20,url,1.5,Place.GROUND,Place.GROUND);
         number=4;

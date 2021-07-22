@@ -18,14 +18,35 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.Date;
 
+/**
+ * The type Main.
+ */
 public class Main extends Application {
+    /**
+     * The constant gc.
+     */
     public static GraphicsContext gc;
     @FXML
     private ImageView imageView;
+    /**
+     * The Sign up scene.
+     */
     static Scene signUpScene;
+    /**
+     * The Sign in scene.
+     */
     static Scene signInScene;
+    /**
+     * The Main menu.
+     */
     static Scene mainMenu;
+    /**
+     * The Game scene.
+     */
     static Scene gameScene;
+    /**
+     * The Stage.
+     */
     static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -52,22 +73,44 @@ public class Main extends Application {
         gameScene=new Scene(rootGame, 650, 458);
         primaryStage.show();
     }
+
+    /**
+     * Change scene to sign up.
+     */
     public static void changeSceneToSignUp()
     {
         stage.setScene(signUpScene);
     }
+
+    /**
+     * Change scene to sign in.
+     */
     public static void changeSceneToSignIn()
     {
         stage.setScene(signInScene);
     }
+
+    /**
+     * Change scene to main menu.
+     */
     public static void changeSceneToMainMenu()
     {
         stage.setScene(mainMenu);
     }
+
+    /**
+     * Change scene to game.
+     */
     public static void changeSceneToGame()
     {
         stage.setScene(gameScene);
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

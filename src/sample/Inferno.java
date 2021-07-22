@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Inferno.
+ */
 public class Inferno extends Cards{
+    /**
+     * Instantiates a new Inferno.
+     *
+     * @param url the url
+     */
     public Inferno(String url) {
         super(500,200,55,url,0.0,Place.AIRandGROUND,Place.BUILDING);
         if(Controller.player.getXp()>2499)

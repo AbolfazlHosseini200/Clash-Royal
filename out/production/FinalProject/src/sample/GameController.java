@@ -436,7 +436,9 @@ public class GameController implements Initializable {
                 for (int o = 0; o < enemyForce.size(); o++) {
                     for (int oo = 0; oo < cardsInGame.size(); oo++) {
 
-                        if (new Point2D(enemyForce.get(o).x, enemyForce.get(o).y).distance(new Point2D(cardsInGame.get(oo).x, cardsInGame.get(oo).y)) < enemyForce.get(o).card.rng) {
+                        if (new Point2D(enemyForce.get(o).x, enemyForce.get(o).y).distance(new Point2D(cardsInGame.get(oo).x, cardsInGame.get(oo).y)) < enemyForce.get(o).card.rng)
+                            if((enemyForce.get(o).card.target==(Place.AIRandGROUND))||enemyForce.get(o).card.position==(Place.AIRandGROUND)||(enemyForce.get(o).card.position==(Place.BUILDING))||(enemyForce.get(o).card.target==(Place.GROUND)&&cardsInGame.get(oo).card.position==(Place.GROUND))||(cardsInGame.get(oo).card.position==(Place.BUILDING)))
+                            {
                             enemyForce.get(o).card.isInRange = true;
                             if (!(enemyForce.get(o).card instanceof queenTower || enemyForce.get(o).card instanceof kingTower)) {
                                 if (jj < 15)
@@ -557,8 +559,9 @@ public class GameController implements Initializable {
     }
 
     private void setWinner() {
+
         if (Integer.parseInt(crownLabel.getText()) > crowns2) {
-            Stage stage = new Stage();
+            Controller.player.addHistory(new BattleHistory(Calendar.getInstance().getTime().toString(),"you","bot"));Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setMinWidth(250);
             stage.setTitle("Congrats");
@@ -575,6 +578,7 @@ public class GameController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
         } else {
+            Controller.player.addHistory(new BattleHistory(Calendar.getInstance().getTime().toString(),"bot","bot"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setMinWidth(250);

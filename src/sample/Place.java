@@ -1,5 +1,19 @@
 package sample;
 
+/**
+ * The enum Place.
+ */
 public enum Place {
-    BUILDING,GROUND,AIRandGROUND
+    /**
+     * Building place.
+     */
+    BUILDING,
+    /**
+     * Ground place.
+     */
+    GROUND,
+    /**
+     * Ai rand ground place.
+     */
+    AIRandGROUND
 }

@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Giant.
+ */
 public class Giant extends Troops{
+    /**
+     * Instantiates a new Giant.
+     *
+     * @param url the url
+     */
     public Giant(String url) {
         super(2000,126.0,50.0,url,1.5,Place.BUILDING,Place.GROUND);
         number=1;

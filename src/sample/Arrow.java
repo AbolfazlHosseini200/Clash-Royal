@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Arrow.
+ */
 public class Arrow extends Cards{
+    /**
+     * Instantiates a new Arrow.
+     *
+     * @param url the url
+     */
     public Arrow(String url) {
         super(0,150,56,url,5.0,Place.AIRandGROUND,Place.AIRandGROUND);
         if(Controller.player.getXp()>2499)

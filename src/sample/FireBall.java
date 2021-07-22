@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Fire ball.
+ */
 public class FireBall extends Spells{
+    /**
+     * Instantiates a new Fire ball.
+     *
+     * @param url the url
+     */
     public FireBall(String url) {
         super(0,325,70,url,5.0,Place.AIRandGROUND,Place.AIRandGROUND);
         number=1;

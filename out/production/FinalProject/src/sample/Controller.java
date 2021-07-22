@@ -1,6 +1,7 @@
 package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +43,12 @@ public class Controller implements Initializable{
     public static Player player;
     private static MediaPlayer menuSong,battleSong;
     public static boolean checked,intelligence;
+    @FXML
+    public Label history1,history2,history3,history4,history5,history6,history7,history8,history9;
+    @FXML
+    public Label winner2,winner3,winner4,winner1,winner5,winner6,winner7,winner8,winner9;
+    @FXML
+    public Label op1,op2,op3,op4,op5,op6,op7,op8,op9;
     @FXML
     private Button done;
     @FXML
@@ -1178,6 +1185,7 @@ public class Controller implements Initializable{
                     if (players.get(i).getUser().equals(username))
                         if (players.get(i).getPass().equals(password)) {
                             player=players.get(i);
+                            updateBattleHistory();
                             Controller.enterMainMenu();
                             return;
                         }
@@ -1201,6 +1209,74 @@ public class Controller implements Initializable{
             stage.setScene(scene);
             stage.showAndWait();
         }
+
+    private void updateBattleHistory() {
+        for (int i=0;i<player.battleHistories.size();i++)
+        {
+            if(history1.getText()==null)
+            {
+                history1.setText(player.battleHistories.get(i).history);
+                winner1.setText(player.battleHistories.get(i).winner);
+               op1.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history2.getText()==null)
+            {
+                history2.setText(player.battleHistories.get(i).history);
+                winner2.setText(player.battleHistories.get(i).winner);
+                op2.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history3.getText()==null)
+            {
+                history3.setText(player.battleHistories.get(i).history);
+                winner3.setText(player.battleHistories.get(i).winner);
+                op3.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history4.getText()==null)
+            {
+                history4.setText(player.battleHistories.get(i).history);
+                winner4.setText(player.battleHistories.get(i).winner);
+                op4.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history5.getText()==null)
+            {
+                history5.setText(player.battleHistories.get(i).history);
+                winner5.setText(player.battleHistories.get(i).winner);
+                op5.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history6.getText()==null)
+            {
+                history6.setText(player.battleHistories.get(i).history);
+                winner6.setText(player.battleHistories.get(i).winner);
+                op6.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history7.getText()==null)
+            {
+                history7.setText(player.battleHistories.get(i).history);
+                winner7.setText(player.battleHistories.get(i).winner);
+                op7.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history8.getText()==null)
+            {
+                history8.setText(player.battleHistories.get(i).history);
+                winner8.setText(player.battleHistories.get(i).winner);
+                op8.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history9.getText()==null)
+            {
+                history9.setText(player.battleHistories.get(i).history);
+                winner9.setText(player.battleHistories.get(i).winner);
+                op9.setText(player.battleHistories.get(i).opponent);
+            }
+        }
+    }
 
     public static void enterMainMenu(){
 

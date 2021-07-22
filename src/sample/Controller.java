@@ -1,6 +1,7 @@
 package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,11 +21,17 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * The type Controller.
+ */
 public class Controller implements Initializable{
     private String password,username;
     private DataOutputStream dataOutputStream=null;
     private DataInputStream dataInputStream=null;
     private int m=3,s=0;
+    /**
+     * The constant legends.
+     */
     public static ArrayList<String> legends=new ArrayList<String>();
     private final Image babarImage=new Image("/barbarian_00000.png");
     private final Image wizardImage=new Image("/wizard_00000.png");
@@ -39,11 +46,130 @@ public class Controller implements Initializable{
     private final Image fireBallImage=new Image("/fireball_00000.png");
     private final Image babyDragonImage=new Image("/baby dragon_00000.png");
     private final Image frame=new Image("/frame.png");
+    /**
+     * The constant player.
+     */
     public static Player player;
     private static MediaPlayer menuSong,battleSong;
-    public static boolean checked,intelligence;
+    /**
+     * The constant checked.
+     */
+    public static boolean checked,
+    /**
+     * The Intelligence.
+     */
+    intelligence;
+    /**
+     * The History 1.
+     */
     @FXML
-    private Label 
+    public Label history1,
+    /**
+     * The History 2.
+     */
+    history2,
+    /**
+     * The History 3.
+     */
+    history3,
+    /**
+     * The History 4.
+     */
+    history4,
+    /**
+     * The History 5.
+     */
+    history5,
+    /**
+     * The History 6.
+     */
+    history6,
+    /**
+     * The History 7.
+     */
+    history7,
+    /**
+     * The History 8.
+     */
+    history8,
+    /**
+     * The History 9.
+     */
+    history9;
+    /**
+     * The Winner 2.
+     */
+    @FXML
+    public Label winner2,
+    /**
+     * The Winner 3.
+     */
+    winner3,
+    /**
+     * The Winner 4.
+     */
+    winner4,
+    /**
+     * The Winner 1.
+     */
+    winner1,
+    /**
+     * The Winner 5.
+     */
+    winner5,
+    /**
+     * The Winner 6.
+     */
+    winner6,
+    /**
+     * The Winner 7.
+     */
+    winner7,
+    /**
+     * The Winner 8.
+     */
+    winner8,
+    /**
+     * The Winner 9.
+     */
+    winner9;
+    /**
+     * The Op 1.
+     */
+    @FXML
+    public Label op1,
+    /**
+     * The Op 2.
+     */
+    op2,
+    /**
+     * The Op 3.
+     */
+    op3,
+    /**
+     * The Op 4.
+     */
+    op4,
+    /**
+     * The Op 5.
+     */
+    op5,
+    /**
+     * The Op 6.
+     */
+    op6,
+    /**
+     * The Op 7.
+     */
+    op7,
+    /**
+     * The Op 8.
+     */
+    op8,
+    /**
+     * The Op 9.
+     */
+    op9;
     @FXML
     private Button done;
     @FXML
@@ -1145,6 +1271,14 @@ public class Controller implements Initializable{
             stage.showAndWait();
         }
     }
+
+    /**
+     * Check.
+     *
+     * @param event the event
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
+     */
     @FXML
     public void check(ActionEvent event) throws IOException, ClassNotFoundException {
         if (pass.getText() != "" && name.getText() != "") {
@@ -1180,6 +1314,7 @@ public class Controller implements Initializable{
                     if (players.get(i).getUser().equals(username))
                         if (players.get(i).getPass().equals(password)) {
                             player=players.get(i);
+                            updateBattleHistory();
                             Controller.enterMainMenu();
                             return;
                         }
@@ -1204,6 +1339,77 @@ public class Controller implements Initializable{
             stage.showAndWait();
         }
 
+    private void updateBattleHistory() {
+        for (int i=0;i<player.battleHistories.size();i++)
+        {
+            if(history1.getText()==null)
+            {
+                history1.setText(player.battleHistories.get(i).history);
+                winner1.setText(player.battleHistories.get(i).winner);
+               op1.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history2.getText()==null)
+            {
+                history2.setText(player.battleHistories.get(i).history);
+                winner2.setText(player.battleHistories.get(i).winner);
+                op2.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history3.getText()==null)
+            {
+                history3.setText(player.battleHistories.get(i).history);
+                winner3.setText(player.battleHistories.get(i).winner);
+                op3.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history4.getText()==null)
+            {
+                history4.setText(player.battleHistories.get(i).history);
+                winner4.setText(player.battleHistories.get(i).winner);
+                op4.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history5.getText()==null)
+            {
+                history5.setText(player.battleHistories.get(i).history);
+                winner5.setText(player.battleHistories.get(i).winner);
+                op5.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history6.getText()==null)
+            {
+                history6.setText(player.battleHistories.get(i).history);
+                winner6.setText(player.battleHistories.get(i).winner);
+                op6.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history7.getText()==null)
+            {
+                history7.setText(player.battleHistories.get(i).history);
+                winner7.setText(player.battleHistories.get(i).winner);
+                op7.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history8.getText()==null)
+            {
+                history8.setText(player.battleHistories.get(i).history);
+                winner8.setText(player.battleHistories.get(i).winner);
+                op8.setText(player.battleHistories.get(i).opponent);
+            }
+            else
+            if(history9.getText()==null)
+            {
+                history9.setText(player.battleHistories.get(i).history);
+                winner9.setText(player.battleHistories.get(i).winner);
+                op9.setText(player.battleHistories.get(i).opponent);
+            }
+        }
+    }
+
+    /**
+     * Enter main menu.
+     */
     public static void enterMainMenu(){
 
             Stage stage=new Stage();
@@ -1228,6 +1434,10 @@ public class Controller implements Initializable{
         Main.changeSceneToMainMenu();
 
     }
+
+    /**
+     * User pass not match.
+     */
     public static void userPassNotMatch()
     {
             Stage stage=new Stage();
@@ -1386,6 +1596,11 @@ public class Controller implements Initializable{
 
     }
 
+    /**
+     * Gets legends.
+     *
+     * @return the legends
+     */
     public static ArrayList<String> getLegends() {
         return legends;
     }

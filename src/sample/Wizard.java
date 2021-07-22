@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Wizard.
+ */
 public class Wizard extends Troops{
+    /**
+     * Instantiates a new Wizard.
+     *
+     * @param url the url
+     */
     public Wizard(String url) {
         super(340.0,130.0,80.0,url,1.7,Place.AIRandGROUND,Place.GROUND);
         number=1;

@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Baby dragon.
+ */
 public class BabyDragon extends Troops{
+    /**
+     * Instantiates a new Baby dragon.
+     *
+     * @param url the url
+     */
     public BabyDragon(String url) {
         super(800.0,100.0,100.0,url,1.8,Place.AIRandGROUND,Place.AIRandGROUND);
         number=1;

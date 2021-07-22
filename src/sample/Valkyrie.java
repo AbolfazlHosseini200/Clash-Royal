@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Valkyrie.
+ */
 public class Valkyrie extends Troops{
+    /**
+     * Instantiates a new Valkyrie.
+     *
+     * @param url the url
+     */
     public Valkyrie(String url) {
         super(880.0,120.0,20.0,url,1.5,Place.GROUND,Place.GROUND);
         number=1;

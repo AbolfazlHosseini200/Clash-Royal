@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Canon.
+ */
 public class Canon extends Buildings{
+    /**
+     * Instantiates a new Canon.
+     *
+     * @param url the url
+     */
     public Canon(String url) {
         super(380,60,50,url,1,Place.GROUND,Place.BUILDING);
         hitSpd=0.8;

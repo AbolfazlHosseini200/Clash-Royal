@@ -1,6 +1,14 @@
 package sample;
 
+/**
+ * The type Peka.
+ */
 public class Peka extends Troops{
+    /**
+     * Instantiates a new Peka.
+     *
+     * @param url the url
+     */
     public Peka(String url) {
         super(600,325.0,20.0,url,1.8,Place.GROUND,Place.GROUND);
         number=1;

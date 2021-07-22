@@ -2,7 +2,15 @@ package sample;
 
 import java.net.URL;
 
+/**
+ * The Class Archer.
+ */
 public class Archer extends Troops{
+    /**
+     * Instantiates a new Archer.
+     *
+     * @param url the url
+     */
     Archer(String url) {
         super(125.0,33.0,100.0,url,1.2,Place.AIRandGROUND,Place.GROUND);
         if(Controller.player.getXp()>2499)
@@ -30,9 +38,4 @@ public class Archer extends Troops{
                     }
         speed=0.33;
     }
-//    public void updateXp()
-//    {
-//        this.xp+=xp;
-//        if(xp>)
-//    }
 }

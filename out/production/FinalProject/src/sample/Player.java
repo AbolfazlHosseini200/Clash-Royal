@@ -7,7 +7,7 @@ public class Player implements Serializable {
     private int gems,money,xp=0;
     private String user,pass,name,email;
     private ArrayList<String> deck=new ArrayList<String>();
-
+    public ArrayList<BattleHistory> battleHistories=new ArrayList<BattleHistory>();
     public String getUser() {
         return user;
     }
@@ -37,7 +37,10 @@ public void setXp(int n)
     public int getXp() {
         return xp;
     }
-
+    public void addHistory(BattleHistory battleHistory)
+    {
+        battleHistories.add(battleHistory);
+    }
     public ArrayList<String> getDeck() {
         return deck;
     }
