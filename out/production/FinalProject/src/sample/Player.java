@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
-    private int gems,money,xp;
+    private int gems,money,xp=0;
     private String user,pass,name,email;
     private ArrayList<String> deck=new ArrayList<String>();
 
@@ -28,6 +28,14 @@ public class Player implements Serializable {
 
     public void setDeck(ArrayList<String> deck) {
         this.deck = deck;
+    }
+public void setXp(int n)
+{
+    xp+=n;
+}
+
+    public int getXp() {
+        return xp;
     }
 
     public ArrayList<String> getDeck() {

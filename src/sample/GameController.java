@@ -22,6 +22,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.HTMLDocument;
 import java.net.URL;
 import java.util.*;
 
@@ -202,6 +203,14 @@ public class GameController implements Initializable {
                     if (enemyAlternative.get(n).equals(rageImage.getUrl())) {
                         {
                             enemyForce.add(new CardXY(new Rage(rageImage.getUrl()), rageImage.getUrl(), rageImage.getUrl(), rageImage.getUrl(), x, y));
+                            for (int i=0;i<enemyForce.size();i++)
+                            {
+                                if(new Point2D(x,y).distance(enemyForce.get(i).x,enemyForce.get(i).y)<100);
+                                {
+                                    enemyForce.get(i).card.hitSpd*=1.4;
+                                    enemyForce.get(i).card.dmg*=1.4;
+                                }
+                            }
                         }
                     } else if (enemyAlternative.get(n).equals(babarImage.getUrl())) {
                         {
@@ -217,7 +226,7 @@ public class GameController implements Initializable {
                     } else if (enemyAlternative.get(n).equals(infernoImage.getUrl())) {
                         {
                             enemyForce.add(new CardXY(new Inferno(infernoImageBattle.getUrl()), infernoImageBattle.getUrl(), infernoImageBattle.getUrl(), infernoImageBattle.getUrl(), x, y));
-
+                             enemyForce.get(enemyForce.size()-1).card.build=new Date();
                         }
                     } else if (enemyAlternative.get(n).equals(babyDragonImage.getUrl())) {
                         {
@@ -256,12 +265,11 @@ public class GameController implements Initializable {
 
                         {
                             enemyForce.add(new CardXY(new Peka(pekaImageBattle.getUrl()), minid2.getUrl(), miniu2.getUrl(), pekaHit2.getUrl(), x, y));
-
                         }
                     } else if (enemyAlternative.get(n).equals(canonImage.getUrl())) {
                         {
                             enemyForce.add(new CardXY(new Canon(canonImageBattle.getUrl()), canonImageBattle.getUrl(), canonImageBattle.getUrl(), canonImageBattle.getUrl(), x, y));
-
+                             enemyForce.get(enemyForce.size()-1).card.build=new Date();
                         }
                     } else if (enemyAlternative.get(n).equals(fireBallImage.getUrl())) {
                         {
@@ -335,13 +343,42 @@ public class GameController implements Initializable {
                         if (new Date().getTime() - cardsInGame.get(i).card.lastHit.getTime() < 1000)
                             gc.drawImage(arrowImage, cardsInGame.get(i).x, cardsInGame.get(i).y);
                 }
-
+                for (int i = 0; i < enemyForce.size(); i++) {
+                    if (enemyForce.get(i).card instanceof FireBall || enemyForce.get(i).card instanceof Arrow)
+                        if (new Date().getTime() - enemyForce.get(i).card.lastHit.getTime() < 1000)
+                            gc.drawImage(arrowImage, enemyForce.get(i).x, enemyForce.get(i).y);
+                }
+                        int remove2=-1;
+                for (int i=0;i<cardsInGame.size();i++)
+                {
+                    if(cardsInGame.get(i).card instanceof Inferno ||cardsInGame.get(i).card instanceof Canon)
+                        if(new Date().getTime()-(cardsInGame.get(i).card.build.getTime())>30000)
+                            remove2=i;
+                }
+                if(remove2!=-1)
+                {
+                    cardsInGame.remove(remove2);
+                    remove2=-1;
+                }
+                for (int i=0;i<enemyForce.size();i++)
+                {
+                    if(enemyForce.get(i).card instanceof Inferno ||enemyForce.get(i).card instanceof Canon)
+                        if(new Date().getTime()-(enemyForce.get(i).card.build.getTime())>30000)
+                            remove2=i;
+                }
+                if(remove2!=-1)
+                {
+                    enemyForce.remove(remove2);
+                    remove2=-1;
+                }
                 //army shooting
                 for (int o = 0; o < cardsInGame.size(); o++) {
                     for (int oo = 0; oo < enemyForce.size(); oo++) {
 
-                        if (new Point2D(cardsInGame.get(o).x, cardsInGame.get(o).y).distance(new Point2D(enemyForce.get(oo).x, enemyForce.get(oo).y)) < cardsInGame.get(o).card.rng) {
-                            cardsInGame.get(o).card.isInRange = true;
+                        if (new Point2D(cardsInGame.get(o).x, cardsInGame.get(o).y).distance(new Point2D(enemyForce.get(oo).x, enemyForce.get(oo).y)) < cardsInGame.get(o).card.rng)
+                            if((cardsInGame.get(o).card.target==(Place.AIRandGROUND))||cardsInGame.get(o).card.position==(Place.AIRandGROUND)||(cardsInGame.get(o).card.position==(Place.BUILDING))||(cardsInGame.get(o).card.target==(Place.GROUND)&&enemyForce.get(oo).card.position==(Place.GROUND))||(enemyForce.get(oo).card.position==(Place.BUILDING)))
+                            {
+                                cardsInGame.get(o).card.isInRange = true;
                             if (!(cardsInGame.get(o).card instanceof queenTower || cardsInGame.get(o).card instanceof kingTower)) {
                                 if (jj < 15)
                                     gc.drawImage(new Image(cardsInGame.get(o).hitPic, 50, 50, false, false), cardsInGame.get(o).x, cardsInGame.get(o).y);
@@ -350,7 +387,6 @@ public class GameController implements Initializable {
                             }
                             if (!cardsInGame.get(o).card.targets.contains(enemyForce.get(oo)))
                                 cardsInGame.get(o).card.targets.add(enemyForce.get(oo));
-                            //System.out.println((double)((new Date().getTime()-cardsInGame.get(o).card.lastHit.getTime())/1000));
                             if ((double) ((new Date().getTime() - cardsInGame.get(o).card.lastHit.getTime()) / 1000) > cardsInGame.get(o).card.hitSpd) {
                                 enemyForce.get(oo).card.hp -= cardsInGame.get(o).card.dmg;
                                 cardsInGame.get(o).card.lastHit = new Date();
@@ -363,14 +399,25 @@ public class GameController implements Initializable {
                                         cardsInGame.get(i).card.targets.remove(enemyForce.get(oo));
                                 cardsInGame.get(o).card.isInRange = false;
                                 if (enemyForce.get(oo).card instanceof queenTower || enemyForce.get(oo).card instanceof kingTower) {
-                                    if (enemyForce.get(oo).card instanceof queenTower && enemyForce.get(oo).card.getUrl() == null)
+                                    if (enemyForce.get(oo).card instanceof queenTower && enemyForce.get(oo).card.getUrl() == null) {
+                                        crowns1++;
                                         Platform.runLater(() -> crownLabel.setText(String.valueOf(1 + Integer.parseInt(crownLabel.getText()))));
+                                    }
                                     if (enemyForce.get(oo).card instanceof kingTower)
+                                    {
+                                        crowns1=3;
                                         Platform.runLater(() -> crownLabel.setText("3"));
-                                    if (Integer.parseInt(crownLabel.getText()) == 3 || (m == 0 && s == 0)) {
+                                    }
+                                    if (crowns1 == 3 ) {
                                         setWinner();
                                         stop();
                                     }
+                                    if(m==0&&s==0)
+                                        if(crowns1!=crowns2)
+                                        {
+                                            setWinner();
+                                            stop();
+                                        }
                                 }
                                 enemyForce.get(oo).card.url = fire.getUrl();
                                 remove = oo;
@@ -417,10 +464,16 @@ public class GameController implements Initializable {
                                         crowns2++;
                                     if (cardsInGame.get(oo).card instanceof kingTower)
                                         crowns2 = 3;
-                                    if (crowns2 == 3 || (m == 0 && s == 0)) {
+                                    if (crowns2 == 3) {
                                         setWinner();
                                         stop();
                                     }
+                                    if(m==0&&s==0)
+                                        if(crowns1!=crowns2)
+                                        {
+                                            setWinner();
+                                            stop();
+                                        }
                                 }
                                 cardsInGame.get(oo).card.url = fire.getUrl();
                                 remove = oo;
@@ -539,6 +592,11 @@ public class GameController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
         }
+        if(crowns2<crowns1)
+            Controller.player.setXp(200);
+        else
+            Controller.player.setXp(70);
+        Main.changeSceneToMainMenu();
     }
 
     @FXML
@@ -1135,6 +1193,14 @@ public class GameController implements Initializable {
             if (chosenCard.equals(rageImage.getUrl()) && chosenCard != null) {
                 {
                     cardsInGame.add(new CardXY(new Rage(rageImage.getUrl()), rageImage.getUrl(), rageImage.getUrl(), rageImage.getUrl(), x, y));
+                    for (int i=0;i<cardsInGame.size();i++)
+                    {
+                        if(new Point2D(x,y).distance(cardsInGame.get(i).x,cardsInGame.get(i).y)<100);
+                        {
+                            cardsInGame.get(i).card.hitSpd*=1.4;
+                            cardsInGame.get(i).card.dmg*=1.4;
+                        }
+                    }
                     chosenCardImage.setImage(frame);
                     chosenCard = null;
                 }
@@ -1156,6 +1222,7 @@ public class GameController implements Initializable {
             } else if (chosenCard.equals(infernoImage.getUrl()) && chosenCard != null) {
                 {
                     cardsInGame.add(new CardXY(new Inferno(infernoImageBattle.getUrl()), infernoImageBattle.getUrl(), infernoImageBattle.getUrl(), infernoImageBattle.getUrl(), x, y));
+                    cardsInGame.get(cardsInGame.size()-1).card.build=new Date();
                     chosenCard = null;
                     chosenCardImage.setImage(frame);
                 }
@@ -1206,6 +1273,7 @@ public class GameController implements Initializable {
             } else if (chosenCard.equals(canonImage.getUrl()) && chosenCard != null) {
                 {
                     cardsInGame.add(new CardXY(new Canon(canonImageBattle.getUrl()), canonImageBattle.getUrl(), canonImageBattle.getUrl(), canonImageBattle.getUrl(), x, y));
+                    cardsInGame.get(cardsInGame.size()-1).card.build=new Date();
                     chosenCard = null;
                     chosenCardImage.setImage(frame);
                 }

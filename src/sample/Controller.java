@@ -43,6 +43,8 @@ public class Controller implements Initializable{
     private static MediaPlayer menuSong,battleSong;
     public static boolean checked,intelligence;
     @FXML
+    private Label 
+    @FXML
     private Button done;
     @FXML
     private CheckBox botCheck,intelligentBot;
